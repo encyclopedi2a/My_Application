@@ -56,8 +56,16 @@ public class EntryAdapter extends ArrayAdapter<Item> {
                 v = vi.inflate(R.layout.list_item_enty, null);
                 final TextView title = (TextView) v
                         .findViewById(R.id.list_item_entry_title);
-                if(position==0) {
+                if (position == 0) {
                     title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.home, 0, 0, 0);
+                } else if (position == 9) {
+                    title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share, 0, 0, 0);
+                } else if (position == 10) {
+                    title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+                } else if (position == 11) {
+                    title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.setting, 0, 0, 0);
+                }else if (position == 12) {
+                    title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.disclaimer, 0, 0, 0);
                 }
                 title.setTextColor(Color.BLACK);
                 title.setBackgroundResource(R.drawable.roundedcorner);
