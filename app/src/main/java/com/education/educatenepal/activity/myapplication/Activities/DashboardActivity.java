@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.education.educatenepal.activity.myapplication.R;
+import com.education.educatenepal.activity.myapplication.fragments.HomePageFragment;
 
 public class DashboardActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -50,7 +51,7 @@ public class DashboardActivity extends AppCompatActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, new HomePageFragment())
                 .commit();
     }
 

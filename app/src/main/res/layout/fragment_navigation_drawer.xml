@@ -16,20 +16,22 @@
         android:dividerHeight="1dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:text="Developed By:"
-        android:textColor="#FF4500"
+        android:background="#FF4500"
+        android:textColor="#ffffff"
         android:textSize="20sp"
         android:textStyle="bold|italic" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:text="Gokarna Pantha"
-        android:textColor="#FF4500"
+        android:background="#FF4500"
+        android:textColor="#ffffff"
         android:textSize="17sp"
         android:textStyle="bold|italic" />
 
