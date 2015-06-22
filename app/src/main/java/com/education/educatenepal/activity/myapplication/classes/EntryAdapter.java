@@ -16,12 +16,12 @@ import com.education.educatenepal.activity.myapplication.interfaces.Item;
 import java.util.ArrayList;
 
 @SuppressLint("InflateParams")
-public class EntryAdapter extends ArrayAdapter<Item> {
+public class EntryAdapter extends ArrayAdapter<Item>{
     @SuppressWarnings("unused")
     private Context context;
     private ArrayList<Item> items;
     private LayoutInflater vi;
-
+    private TextView title;
     public EntryAdapter(Context context, ArrayList<Item> items) {
         super(context, 0, items);
         this.context = context;
@@ -54,7 +54,7 @@ public class EntryAdapter extends ArrayAdapter<Item> {
             } else {
                 EntryItem ei = (EntryItem) i;
                 v = vi.inflate(R.layout.list_item_enty, null);
-                final TextView title = (TextView) v
+                title = (TextView) v
                         .findViewById(R.id.list_item_entry_title);
                 if (position == 0) {
                     title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.home, 0, 0, 0);
@@ -68,7 +68,7 @@ public class EntryAdapter extends ArrayAdapter<Item> {
                     title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.disclaimer, 0, 0, 0);
                 }
                 title.setTextColor(Color.BLACK);
-                title.setBackgroundResource(R.drawable.roundedcorner);
+                title.setBackgroundResource(R.drawable.selector_state);
                 if (title != null)
                     title.setText(ei.title);
             }

@@ -11,6 +11,10 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="dashboard_content">"Higher education in Nepal, like elsewhere in the world, is the sole responsibility of and administered by universities and institutions of higher learning. At present, the country has six universities; five of these - two public (state), two again public (community) and one private - offer western model academic program and technical education while the remaining one, again a public university, is dedicated to the study of Sanskrit and related subjects. There are two more universities in the offing-an international Buddhist university at Lumbini and another a general university with concentration on BuddhisH at Banepa. But since they have not yet received the character, they can be classified only as proposed universities.
 
+Entry into the public institutions of higher learning, except to the technical programs such as medicine, engineering, forestry and agriculture, remained and still remains to a considerable extent almost unrestricted. This has created a tremendous pressure on institutions, draining their physical and human resources and leading, in turn, to a progressive deterioration in the quality of education they impart. As a result, during the last decade of the last century, the government has granted affiliation to a number of private i.e, proprietary colleges and many of them are now fully operational. They offer their programs with the same curricula, but being smaller in size and restrictive in enrolment, they are better equipped and better facilitated. However, such colleges are comparatively very expensive and are almost beyond the reach of the common people. Similar is the case with the only private university of the country as its programs, too, are accessible only to the family well-off.
+
+ "</string>
     <string name="action_example"></string>
 </resources>

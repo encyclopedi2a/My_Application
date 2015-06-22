@@ -11,11 +11,10 @@
         android:layout_weight="1">
 
         <ViewFlipper
+            android:id="@+id/viewFlipper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:autoStart="true"
-            android:id="@+id/viewFlipper"
-            >
+            android:autoStart="true">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -44,8 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginBottom="15dp"
-            android:textColor="#ffffff"
             android:text="This is the first image"
+            android:textColor="#ffffff"
             android:textSize="20dp" />
     </FrameLayout>
 
@@ -59,22 +58,27 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/dark_header"
+            android:background="@android:drawable/screen_background_dark_transparent"
             android:padding="2dp"
-            android:text="EDUCATION IN NEPAL"
+            android:text="HIGHER EDUCATION IN NEPAL"
             android:textColor="#ffffff"
             android:textSize="20sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
+        <ScrollView
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="#ffffff"
-            android:padding="5dp"
-            android:text="Content will be here"
-            android:textColor="#000000"
-            android:textSize="17sp" />
+            android:scrollbars="none"
+            >
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:padding="5dp"
+                android:text="@string/dashboard_content"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+        </ScrollView>
     </LinearLayout>
 </LinearLayout>
