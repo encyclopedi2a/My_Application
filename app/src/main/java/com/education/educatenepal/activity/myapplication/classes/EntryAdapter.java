@@ -16,18 +16,29 @@ import com.education.educatenepal.activity.myapplication.interfaces.Item;
 import java.util.ArrayList;
 
 @SuppressLint("InflateParams")
-public class EntryAdapter extends ArrayAdapter<Item>{
+public class EntryAdapter extends ArrayAdapter<Item> {
     @SuppressWarnings("unused")
     private Context context;
     private ArrayList<Item> items;
     private LayoutInflater vi;
     private TextView title;
+
     public EntryAdapter(Context context, ArrayList<Item> items) {
         super(context, 0, items);
         this.context = context;
         this.items = items;
         vi = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return !getItem(position).isSection();
     }
 
     @SuppressLint("InflateParams")
@@ -64,7 +75,7 @@ public class EntryAdapter extends ArrayAdapter<Item>{
                     title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
                 } else if (position == 11) {
                     title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.setting, 0, 0, 0);
-                }else if (position == 12) {
+                } else if (position == 12) {
                     title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.disclaimer, 0, 0, 0);
                 }
                 title.setTextColor(Color.BLACK);
@@ -73,6 +84,7 @@ public class EntryAdapter extends ArrayAdapter<Item>{
                     title.setText(ei.title);
             }
         }
+
         return v;
     }
 }

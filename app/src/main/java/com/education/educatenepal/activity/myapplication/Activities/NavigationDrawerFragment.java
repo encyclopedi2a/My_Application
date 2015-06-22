@@ -7,16 +7,20 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,6 +28,8 @@ import com.education.educatenepal.activity.myapplication.R;
 import com.education.educatenepal.activity.myapplication.classes.EntryAdapter;
 import com.education.educatenepal.activity.myapplication.classes.EntryItem;
 import com.education.educatenepal.activity.myapplication.classes.SectionItem;
+import com.education.educatenepal.activity.myapplication.fragments.HomePageFragment;
+import com.education.educatenepal.activity.myapplication.fragments.WebFragment;
 import com.education.educatenepal.activity.myapplication.interfaces.Item;
 
 import java.util.ArrayList;
@@ -33,7 +39,7 @@ import java.util.ArrayList;
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     /**
      * Remember the position of the selected item.
@@ -97,10 +103,9 @@ public class NavigationDrawerFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_navigation_drawer, null);
         mDrawerListView = (ListView) view.findViewById(R.id.drawerListView);
-        mDrawerListView.requestLayout();
+        mDrawerListView.setOnItemClickListener(this);
         items = new ArrayList<Item>();
         items.add(new EntryItem("Home"));
-
         items.add(new SectionItem("Universities in Nepal"));
         items.add(new EntryItem("Tribhuvan University"));
         items.add(new EntryItem("Pokhara University"));
@@ -277,6 +282,27 @@ public class NavigationDrawerFragment extends Fragment {
 
     private ActionBar getActionBar() {
         return ((AppCompatActivity) getActivity()).getSupportActionBar();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        switch (position) {
+            case 0:
+                HomePageFragment homePageFragment = new HomePageFragment();
+                ft.replace(R.id.container, homePageFragment);
+                ft.commit();
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                WebFragment viewPagerFragment=new WebFragment();
+                ft.replace(R.id.container, viewPagerFragment);
+                ft.commit();
+        }
+        mDrawerLayout.closeDrawer(Gravity.LEFT);
     }
 
     /**
