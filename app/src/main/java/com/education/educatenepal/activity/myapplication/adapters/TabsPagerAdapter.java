@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.education.educatenepal.activity.myapplication.fragments.CollegeFragment;
 import com.education.educatenepal.activity.myapplication.fragments.CoursesFragment;
+import com.education.educatenepal.activity.myapplication.fragments.GoogleMapFragment;
+import com.education.educatenepal.activity.myapplication.fragments.WebFragment;
 
 /**
  * Created by gokarna on 6/22/15.
@@ -36,10 +38,15 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
         {
             CollegeFragment tab1 = new CollegeFragment();
             return tab1;
-        } else             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
-        {
+        } else if(position==1) {
             CoursesFragment tab2 = new CoursesFragment();
             return tab2;
+        }else if(position==2){
+            WebFragment tab3=new WebFragment();
+            return tab3;
+        }else{
+            GoogleMapFragment tab4=new GoogleMapFragment();
+            return tab4;
         }
 
 

@@ -9,30 +9,11 @@
         android:id="@+id/drawerListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#cccc"
         android:layout_weight="1"
-        android:scrollbars="none"
+        android:background="#cccc"
         android:choiceMode="singleChoice"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1dp"
+        android:scrollbars="none" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Developed By:"
-        android:background="#FF4500"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:textStyle="bold|italic" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Gokarna Pantha"
-        android:background="#FF4500"
-        android:textColor="#ffffff"
-        android:textSize="17sp"
-        android:textStyle="bold|italic" />
 
 </LinearLayout>

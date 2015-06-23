@@ -58,6 +58,7 @@ public class EntryAdapter extends ArrayAdapter<Item> {
                 final TextView sectionView = (TextView) v
                         .findViewById(R.id.list_item_section_text);
                 sectionView.setTextSize(19);
+                sectionView.setBackgroundColor(Color.RED);
                 sectionView.setPadding(12, 12, 12, 12);
                 sectionView.setTypeface(null, Typeface.BOLD);
                 sectionView.setText(si.title);

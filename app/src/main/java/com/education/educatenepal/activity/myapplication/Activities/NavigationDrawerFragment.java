@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -104,6 +105,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_navigation_drawer, null);
         mDrawerListView = (ListView) view.findViewById(R.id.drawerListView);
+        mDrawerListView.setBackgroundColor(Color.WHITE);
         mDrawerListView.setOnItemClickListener(this);
         items = new ArrayList<Item>();
         items.add(new EntryItem("Home"));
