@@ -9,4 +9,8 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="pagerTheme" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
 </resources>

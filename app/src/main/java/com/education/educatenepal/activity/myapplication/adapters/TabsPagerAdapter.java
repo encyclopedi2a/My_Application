@@ -2,42 +2,60 @@ package com.education.educatenepal.activity.myapplication.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.education.educatenepal.activity.myapplication.fragments.CollegeFragment;
 import com.education.educatenepal.activity.myapplication.fragments.CoursesFragment;
-import com.education.educatenepal.activity.myapplication.fragments.GoogleMapFragment;
-import com.education.educatenepal.activity.myapplication.fragments.WebFragment;
 
 /**
  * Created by gokarna on 6/22/15.
  */
-public class TabsPagerAdapter extends FragmentPagerAdapter {
+public class TabsPagerAdapter extends FragmentStatePagerAdapter {
     public TabsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
+    CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created
+    int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
+
+
+    // Build a Constructor and assign the passed Values to appropriate values in the class
+    public TabsPagerAdapter(FragmentManager fm, CharSequence mTitles[], int mNumbOfTabsumb) {
+        super(fm);
+
+        this.Titles = mTitles;
+        this.NumbOfTabs = mNumbOfTabsumb;
+
+    }
+
+    //This method return the fragment for the every position in the View Pager
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                // Top Rated fragment activity
-                return new CoursesFragment();
-            case 1:
-                // Games fragment activity
-                return new CollegeFragment();
-            case 2:
-                // Movies fragment activity
-                return new WebFragment();
-            case 3:
-                return new GoogleMapFragment();
+
+        if (position == 0) // if the position is 0 we are returning the First tab
+        {
+            CollegeFragment tab1 = new CollegeFragment();
+            return tab1;
+        } else             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        {
+            CoursesFragment tab2 = new CoursesFragment();
+            return tab2;
         }
 
-        return null;
+
     }
+
+    // This method return the titles for the Tabs in the Tab Strip
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return Titles[position];
+    }
+
+    // This method return the Number of tabs for the tabs Strip
 
     @Override
     public int getCount() {
-        return 4;
+        return NumbOfTabs;
     }
 }

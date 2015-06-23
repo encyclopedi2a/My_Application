@@ -1,6 +1,7 @@
 package com.education.educatenepal.activity.myapplication.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -113,7 +114,6 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         items.add(new EntryItem("Kathmandu University"));
         items.add(new EntryItem("Lumbini Bauddha University"));
         items.add(new EntryItem("Mahendra University"));
-
         items.add(new SectionItem("Edu-Nepal"));
         items.add(new EntryItem("Share this app"));
         items.add(new EntryItem("Like us on facebook"));
@@ -295,7 +295,8 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
                 ft.commit();
                 break;
             case 2:
-                
+                Intent intent=new Intent(getActivity(),ViewPagerActivity.class);
+                startActivity(intent);
                 break;
             case 3:
                 WebFragment viewPagerFragment=new WebFragment();
