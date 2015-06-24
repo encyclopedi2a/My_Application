@@ -1,35 +1,37 @@
-package com.education.educatenepal.activity.myapplication.Activities;
+package com.education.educatenepal.activity.myapplication.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.education.educatenepal.activity.myapplication.R;
 import com.education.educatenepal.activity.myapplication.adapters.TabsPagerAdapter;
 import com.education.educatenepal.activity.myapplication.classes.SlidingTabLayout;
 
-public class ViewPagerActivity extends AppCompatActivity {
-    Toolbar toolbar;
-    ViewPager pager;
-    TabsPagerAdapter adapter;
-    SlidingTabLayout tabs;
-    CharSequence Titles[] = {"College", "Courses","Webpage","Google Map"};
-    int Numboftabs = 4;
+public class ViewPagerFragment extends Fragment {
+    private ViewPager pager;
+    private TabsPagerAdapter adapter;
+    private SlidingTabLayout tabs;
+    private CharSequence Titles[] = {"College", "Courses", "Webpage", "Google Map"};
+    private int Numboftabs = 4;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_pager);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_view_pager, null);
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter = new TabsPagerAdapter(getSupportFragmentManager(), Titles, Numboftabs);
+        adapter = new TabsPagerAdapter(getFragmentManager(), Titles, Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
-        pager = (ViewPager) findViewById(R.id.pager);
+        pager = (ViewPager) view.findViewById(R.id.pager);
         pager.setAdapter(adapter);
 
         // Assiging the Sliding Tab Layout View
-        tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        tabs = (SlidingTabLayout) view.findViewById(R.id.tabs);
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
@@ -42,5 +44,13 @@ public class ViewPagerActivity extends AppCompatActivity {
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
+
+        return view;
     }
 }
+/*    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_pager);
+
+    }*/

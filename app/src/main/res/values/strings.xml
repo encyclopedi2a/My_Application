@@ -4,11 +4,26 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
-
+    <string-array name="spinner_content">
+        <item>Mechi Zone</item>
+        <item>Koshi Zone</item>
+        <item>Sagarmatha Zone</item>
+        <item>Janakpur Zone</item>
+        <item>Natayani Zone</item>
+        <item>Bagmati Zone</item>
+        <item>Gandaki Zone</item>
+        <item>Dhaulagiri Zone</item>
+        <item>Rapti Zone</item>
+        <item>Bheri Zone</item>
+        <item>Karnali ZOne</item>
+        <item>Seti ZOne</item>
+        <item>Mahakali ZOne</item>
+        <item>Lumbini Zone</item>
+    </string-array>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
-
+    <string name="collegename">Select College Zone Wise</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="dashboard_content">"Higher education in Nepal, like elsewhere in the world, is the sole responsibility of and administered by universities and institutions of higher learning. At present, the country has six universities; five of these - two public (state), two again public (community) and one private - offer western model academic program and technical education while the remaining one, again a public university, is dedicated to the study of Sanskrit and related subjects. There are two more universities in the offing-an international Buddhist university at Lumbini and another a general university with concentration on BuddhisH at Banepa. But since they have not yet received the character, they can be classified only as proposed universities.
@@ -18,7 +33,7 @@ Entry into the public institutions of higher learning, except to the technical p
  "</string>
     <string name="action_example"></string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_view_pager">ViewPagerActivity</string>
 </resources>

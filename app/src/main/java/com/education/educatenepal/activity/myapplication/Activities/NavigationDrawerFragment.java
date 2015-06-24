@@ -1,7 +1,6 @@
 package com.education.educatenepal.activity.myapplication.Activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -31,6 +30,7 @@ import com.education.educatenepal.activity.myapplication.classes.EntryAdapter;
 import com.education.educatenepal.activity.myapplication.classes.EntryItem;
 import com.education.educatenepal.activity.myapplication.classes.SectionItem;
 import com.education.educatenepal.activity.myapplication.fragments.HomePageFragment;
+import com.education.educatenepal.activity.myapplication.fragments.ViewPagerFragment;
 import com.education.educatenepal.activity.myapplication.fragments.WebFragment;
 import com.education.educatenepal.activity.myapplication.interfaces.Item;
 
@@ -297,8 +297,9 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
                 ft.commit();
                 break;
             case 2:
-                Intent intent=new Intent(getActivity(),ViewPagerActivity.class);
-                startActivity(intent);
+                ViewPagerFragment activity=new ViewPagerFragment();
+                ft.replace(R.id.container, activity);
+                ft.commit();
                 break;
             case 3:
                 WebFragment viewPagerFragment=new WebFragment();
