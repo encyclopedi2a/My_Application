@@ -1,6 +1,7 @@
 package com.education.educatenepal.activity.myapplication.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -91,6 +92,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
 
         // Select either the default item (0) or the last selected item.
         selectItem(mCurrentSelectedPosition);
+        loadPref();
     }
 
     @Override
@@ -287,27 +289,36 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        loadPref();
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         switch (position) {
             case 0:
-                DashboardActivity.getCurrentActivityStatua="active";
+                DashboardActivity.getCurrentActivityStatua = "active";
                 HomePageFragment homePageFragment = new HomePageFragment();
                 ft.replace(R.id.container, homePageFragment, "HOME_FRAGMENT");
                 ft.commit();
                 break;
             case 2:
-                DashboardActivity.getCurrentActivityStatua="passive";
+                DashboardActivity.getCurrentActivityStatua = "passive";
                 ViewPagerFragment activity = new ViewPagerFragment();
                 ft.replace(R.id.container, activity);
                 ft.commit();
                 break;
             case 3:
-                DashboardActivity.getCurrentActivityStatua="passive";
+                DashboardActivity.getCurrentActivityStatua = "passive";
                 WebFragment viewPagerFragment = new WebFragment();
                 ft.replace(R.id.container, viewPagerFragment);
                 ft.commit();
+                break;
+            case 11:
+                Intent intent = new Intent(getActivity(), SettingPreferenceActivity.class);
+                startActivityForResult(intent, 0);
         }
         mDrawerLayout.closeDrawer(Gravity.LEFT);
     }
@@ -320,5 +331,11 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(int position);
+    }
+
+    private void loadPref() {
+        SharedPreferences mySharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        boolean my_checkbox_preference = mySharedPreferences.getBoolean("checkbox_preference", false);
+        Toast.makeText(getActivity().getApplicationContext(),"The"+my_checkbox_preference+"true",Toast.LENGTH_LONG).show();
     }
 }
