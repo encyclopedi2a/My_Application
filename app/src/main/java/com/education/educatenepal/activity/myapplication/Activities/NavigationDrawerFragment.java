@@ -292,17 +292,20 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         FragmentTransaction ft = fragmentManager.beginTransaction();
         switch (position) {
             case 0:
+                DashboardActivity.getCurrentActivityStatua="active";
                 HomePageFragment homePageFragment = new HomePageFragment();
-                ft.replace(R.id.container, homePageFragment);
+                ft.replace(R.id.container, homePageFragment, "HOME_FRAGMENT");
                 ft.commit();
                 break;
             case 2:
-                ViewPagerFragment activity=new ViewPagerFragment();
+                DashboardActivity.getCurrentActivityStatua="passive";
+                ViewPagerFragment activity = new ViewPagerFragment();
                 ft.replace(R.id.container, activity);
                 ft.commit();
                 break;
             case 3:
-                WebFragment viewPagerFragment=new WebFragment();
+                DashboardActivity.getCurrentActivityStatua="passive";
+                WebFragment viewPagerFragment = new WebFragment();
                 ft.replace(R.id.container, viewPagerFragment);
                 ft.commit();
         }

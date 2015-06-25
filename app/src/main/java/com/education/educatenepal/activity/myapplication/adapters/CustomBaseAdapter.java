@@ -53,7 +53,7 @@ public class CustomBaseAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.list_row_item, null);
             holder = new ViewHolder();
             holder.title = (TextView) convertView.findViewById(R.id.title);
-            holder.title.setBackgroundColor(Color.LTGRAY);
+            holder.title.setBackgroundColor(Color.parseColor("#d3d3d3"));
             holder.webpage = (ImageView) convertView.findViewById(R.id.webpage);
             holder.webpage.setBackgroundColor(Color.LTGRAY);
             holder.map = (ImageView) convertView.findViewById(R.id.map);

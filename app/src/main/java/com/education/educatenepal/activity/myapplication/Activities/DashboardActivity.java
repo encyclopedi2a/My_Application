@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,11 +21,11 @@ public class DashboardActivity extends AppCompatActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    public static String getCurrentActivityStatua = "active";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,9 @@ public class DashboardActivity extends AppCompatActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, new HomePageFragment())
-                   .commit();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, new HomePageFragment())
+                .commit();
     }
 
     public void onSectionAttached(int number) {
@@ -97,5 +98,19 @@ public class DashboardActivity extends AppCompatActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getCurrentActivityStatua.equals("active")) {
+            finish();
+        } else {
+            DashboardActivity.getCurrentActivityStatua="active";
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            HomePageFragment homePageFragment = new HomePageFragment();
+            ft.replace(R.id.container, homePageFragment, "HOME_FRAGMENT");
+            ft.commit();
+        }
     }
 }
