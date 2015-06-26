@@ -1,6 +1,5 @@
 package com.education.educatenepal.activity.myapplication.fragments;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,9 +18,6 @@ public class GoogleMapFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_googlemap, container, false);
         textView=(TextView)view.findViewById(R.id.nepali);
-        Typeface fontHindi = Typeface.createFromAsset(getActivity().getAssets(),
-                "fonts/Preeti_0.ttf");
-        textView.setTypeface(fontHindi);
         return view;
     }
 

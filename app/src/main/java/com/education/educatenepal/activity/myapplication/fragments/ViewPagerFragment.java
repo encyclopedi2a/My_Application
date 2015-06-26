@@ -10,13 +10,14 @@ import android.view.ViewGroup;
 
 import com.education.educatenepal.activity.myapplication.R;
 import com.education.educatenepal.activity.myapplication.adapters.TabsPagerAdapter;
+import com.education.educatenepal.activity.myapplication.classes.PreferenceSettingValueProvider;
 import com.education.educatenepal.activity.myapplication.classes.SlidingTabLayout;
 
 public class ViewPagerFragment extends Fragment {
     private ViewPager pager;
     private TabsPagerAdapter adapter;
     private SlidingTabLayout tabs;
-    private CharSequence Titles[] = {"College", "Courses", "Webpage", "Google Map"};
+    private CharSequence titles[];
     private int Numboftabs = 4;
 
     @Nullable
@@ -24,7 +25,12 @@ public class ViewPagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_view_pager, null);
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter = new TabsPagerAdapter(getFragmentManager(), Titles, Numboftabs);
+        if(!(new PreferenceSettingValueProvider(getActivity().getApplicationContext()).provideSharedPreferenceValue()) ){
+            titles=new CharSequence[]{"College", "Courses", "Webpage", "Google Map"};
+        }else{
+            titles=new CharSequence[]{"कलेजहरु","कोर्सेस","वेबपेज","नक्सा"};
+        }
+        adapter = new TabsPagerAdapter(getFragmentManager(), titles, Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) view.findViewById(R.id.pager);

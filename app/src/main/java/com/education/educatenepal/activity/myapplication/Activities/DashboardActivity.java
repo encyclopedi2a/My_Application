@@ -102,7 +102,6 @@ public class DashboardActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-
         if (getCurrentActivityStatua.equals("active")) {
             finish();
         } else {

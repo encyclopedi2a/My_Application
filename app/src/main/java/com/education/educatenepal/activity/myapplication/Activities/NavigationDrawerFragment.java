@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.education.educatenepal.activity.myapplication.R;
 import com.education.educatenepal.activity.myapplication.classes.EntryAdapter;
 import com.education.educatenepal.activity.myapplication.classes.EntryItem;
+import com.education.educatenepal.activity.myapplication.classes.PreferenceSettingValueProvider;
 import com.education.educatenepal.activity.myapplication.classes.SectionItem;
 import com.education.educatenepal.activity.myapplication.fragments.HomePageFragment;
 import com.education.educatenepal.activity.myapplication.fragments.ViewPagerFragment;
@@ -93,7 +94,8 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
 
         // Select either the default item (0) or the last selected item.
         selectItem(mCurrentSelectedPosition);
-        loadPref();
+        //This will return the checkbox value from preference setting
+        new PreferenceSettingValueProvider(getActivity().getApplicationContext()).provideSharedPreferenceValue();
     }
 
     @Override
@@ -111,7 +113,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         mDrawerListView.setBackgroundColor(Color.WHITE);
         mDrawerListView.setOnItemClickListener(this);
         items = new ArrayList<Item>();
-        if (!checkbox_preference) {
+        if (!new PreferenceSettingValueProvider(getActivity().getApplicationContext()).provideSharedPreferenceValue()) {
             items.add(new EntryItem("Home"));
             items.add(new SectionItem("Universities in Nepal"));
             items.add(new EntryItem("Tribhuvan University"));
@@ -127,13 +129,13 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
             items.add(new EntryItem("Disclaimer "));
         } else {
             items.add(new EntryItem("मुख्य पृष्ठ"));
-            items.add(new SectionItem("नेपालमा बिश्वूविध्यालय "));
-            items.add(new EntryItem("त्रिभुवन विश्वूविध्यालय "));
-            items.add(new EntryItem("पोखरा विश्वूविध्यालय "));
-            items.add(new EntryItem("पुर्बन्चल विश्वूविध्यालय "));
-            items.add(new EntryItem("काठमाडौँ विश्वूविध्यालय "));
-            items.add(new EntryItem("लुम्बिनी बुद्ध विश्वूविध्यालय "));
-            items.add(new EntryItem("महेन्द्र विश्वूविध्यालय "));
+            items.add(new SectionItem("नेपालमा विश्वविध्यालय  "));
+            items.add(new EntryItem("त्रिभुवन विश्वविध्यालय  "));
+            items.add(new EntryItem("पोखरा विश्वविध्यालय  "));
+            items.add(new EntryItem("पुर्बन्चल विश्वविध्यालय  "));
+            items.add(new EntryItem("काठमाडौँ विश्वविध्यालय  "));
+            items.add(new EntryItem("लुम्बिनी बुद्ध विश्वविध्यालय  "));
+            items.add(new EntryItem("महेन्द्र विश्वविध्यालय  "));
             items.add(new SectionItem("यदु-नेपाल"));
             items.add(new EntryItem("यो याप शयर गर्नुहोस"));
             items.add(new EntryItem("फचेबूक्मा लाइक गर्नुहोस"));
@@ -307,7 +309,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        loadPref();
+        new PreferenceSettingValueProvider(getActivity().getApplicationContext()).provideSharedPreferenceValue();
     }
 
     @Override
@@ -349,14 +351,5 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(int position);
-    }
-
-    private void loadPref() {
-        SharedPreferences mySharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        checkbox_preference = mySharedPreferences.getBoolean("checkbox_preference", false);
-    }
-
-    public DrawerLayout returnDrawerLayout() {
-        return mDrawerLayout;
     }
 }
