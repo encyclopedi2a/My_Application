@@ -3,7 +3,6 @@ package com.education.educatenepal.activity.myapplication.classes;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +21,13 @@ public class EntryAdapter extends ArrayAdapter<Item> {
     private ArrayList<Item> items;
     private LayoutInflater vi;
     private TextView title;
+    private boolean checkboxPreference;
 
-    public EntryAdapter(Context context, ArrayList<Item> items) {
+    public EntryAdapter(Context context, ArrayList<Item> items, boolean checkboxPreference) {
         super(context, 0, items);
         this.context = context;
         this.items = items;
+        this.checkboxPreference = checkboxPreference;
         vi = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -54,13 +55,10 @@ public class EntryAdapter extends ArrayAdapter<Item> {
                 v.setOnClickListener(null);
                 v.setOnLongClickListener(null);
                 v.setLongClickable(false);
-
                 final TextView sectionView = (TextView) v
                         .findViewById(R.id.list_item_section_text);
-                sectionView.setTextSize(19);
                 sectionView.setBackgroundColor(Color.LTGRAY);
                 sectionView.setPadding(12, 12, 12, 12);
-                sectionView.setTypeface(null, Typeface.BOLD);
                 sectionView.setText(si.title);
 
             } else {

@@ -72,6 +72,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
     private ArrayList<Item> items;
+    private boolean checkbox_preference;
 
     public NavigationDrawerFragment() {
     }
@@ -110,20 +111,36 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         mDrawerListView.setBackgroundColor(Color.WHITE);
         mDrawerListView.setOnItemClickListener(this);
         items = new ArrayList<Item>();
-        items.add(new EntryItem("Home"));
-        items.add(new SectionItem("Universities in Nepal"));
-        items.add(new EntryItem("Tribhuvan University"));
-        items.add(new EntryItem("Pokhara University"));
-        items.add(new EntryItem("Purbanchal University"));
-        items.add(new EntryItem("Kathmandu University"));
-        items.add(new EntryItem("Lumbini Bauddha University"));
-        items.add(new EntryItem("Mahendra University"));
-        items.add(new SectionItem("Edu-Nepal"));
-        items.add(new EntryItem("Share this app"));
-        items.add(new EntryItem("Like us on facebook"));
-        items.add(new EntryItem("Settings"));
-        items.add(new EntryItem("Disclaimer "));
-        EntryAdapter adapter = new EntryAdapter(getActivity().getApplicationContext(), items);
+        if (!checkbox_preference) {
+            items.add(new EntryItem("Home"));
+            items.add(new SectionItem("Universities in Nepal"));
+            items.add(new EntryItem("Tribhuvan University"));
+            items.add(new EntryItem("Pokhara University"));
+            items.add(new EntryItem("Purbanchal University"));
+            items.add(new EntryItem("Kathmandu University"));
+            items.add(new EntryItem("Lumbini Bauddha University"));
+            items.add(new EntryItem("Mahendra University"));
+            items.add(new SectionItem("Edu-Nepal"));
+            items.add(new EntryItem("Share this app"));
+            items.add(new EntryItem("Like us on facebook"));
+            items.add(new EntryItem("Settings"));
+            items.add(new EntryItem("Disclaimer "));
+        } else {
+            items.add(new EntryItem("मुख्य पृष्ठ"));
+            items.add(new SectionItem("नेपालमा बिश्वूविध्यालय "));
+            items.add(new EntryItem("त्रिभुवन विश्वूविध्यालय "));
+            items.add(new EntryItem("पोखरा विश्वूविध्यालय "));
+            items.add(new EntryItem("पुर्बन्चल विश्वूविध्यालय "));
+            items.add(new EntryItem("काठमाडौँ विश्वूविध्यालय "));
+            items.add(new EntryItem("लुम्बिनी बुद्ध विश्वूविध्यालय "));
+            items.add(new EntryItem("महेन्द्र विश्वूविध्यालय "));
+            items.add(new SectionItem("यदु-नेपाल"));
+            items.add(new EntryItem("यो याप शयर गर्नुहोस"));
+            items.add(new EntryItem("फचेबूक्मा लाइक गर्नुहोस"));
+            items.add(new EntryItem("सेत्तिन्ग्स"));
+            items.add(new EntryItem("दिस्क्लैमेर"));
+        }
+        EntryAdapter adapter = new EntryAdapter(getActivity().getApplicationContext(), items, checkbox_preference);
         mDrawerListView.setAdapter(adapter);
         return view;
     }
@@ -319,6 +336,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
             case 11:
                 Intent intent = new Intent(getActivity(), SettingPreferenceActivity.class);
                 startActivityForResult(intent, 0);
+                getActivity().finish();
         }
         mDrawerLayout.closeDrawer(Gravity.LEFT);
     }
@@ -335,7 +353,10 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
 
     private void loadPref() {
         SharedPreferences mySharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        boolean my_checkbox_preference = mySharedPreferences.getBoolean("checkbox_preference", false);
-        Toast.makeText(getActivity().getApplicationContext(),"The"+my_checkbox_preference+"true",Toast.LENGTH_LONG).show();
+        checkbox_preference = mySharedPreferences.getBoolean("checkbox_preference", false);
+    }
+
+    public DrawerLayout returnDrawerLayout() {
+        return mDrawerLayout;
     }
 }

@@ -2,10 +2,14 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
-	
-    <include
+
+    <TextView
         android:id="@+id/list_item_section_text"
-        layout="@android:layout/preference_category" >
-    </include>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="9dp"
+        android:textColor="#000000"
+        android:textSize="20sp" />
 
 </LinearLayout>

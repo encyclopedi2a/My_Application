@@ -102,9 +102,11 @@ public class DashboardActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+
         if (getCurrentActivityStatua.equals("active")) {
+            finish();
         } else {
-            DashboardActivity.getCurrentActivityStatua="active";
+            DashboardActivity.getCurrentActivityStatua = "active";
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             HomePageFragment homePageFragment = new HomePageFragment();
@@ -112,4 +114,8 @@ public class DashboardActivity extends AppCompatActivity
             ft.commit();
         }
     }
+
 }
+
+
+

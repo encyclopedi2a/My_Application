@@ -10,7 +10,7 @@
         android:id='@+id/nepali'
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="hello world ke chha"
+        android:text="कस्तो छ तपाइलाई"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#FF4500"

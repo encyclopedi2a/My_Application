@@ -20,7 +20,7 @@ public class GoogleMapFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_googlemap, container, false);
         textView=(TextView)view.findViewById(R.id.nepali);
         Typeface fontHindi = Typeface.createFromAsset(getActivity().getAssets(),
-                "fonts/Ananda Lipi Bold Cn Bt.ttf");
+                "fonts/Preeti_0.ttf");
         textView.setTypeface(fontHindi);
         return view;
     }
