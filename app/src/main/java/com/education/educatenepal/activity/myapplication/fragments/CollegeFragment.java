@@ -10,6 +10,7 @@ import android.widget.Spinner;
 
 import com.education.educatenepal.activity.myapplication.Beans.RowItem;
 import com.education.educatenepal.activity.myapplication.R;
+import com.education.educatenepal.activity.myapplication.adapters.CustomArrayAdapter;
 import com.education.educatenepal.activity.myapplication.adapters.CustomBaseAdapter;
 
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class CollegeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_college, container, false);
         spinner=(Spinner)view.findViewById(R.id.spinner);
+        //populating the spinner
+        new CustomArrayAdapter(getActivity().getApplicationContext(),spinner).populateSpinner();
         listView=(ListView)view.findViewById(R.id.collegeListView);
         for(int i=0; i<collegeName.length;i++){
             RowItem item = new RowItem(collegeName[i]);

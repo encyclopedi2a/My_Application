@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.education.educatenepal.activity.myapplication.R;
+import com.education.educatenepal.activity.myapplication.classes.PreferenceSettingValueProvider;
 import com.education.educatenepal.activity.myapplication.fragments.HomePageFragment;
 
 public class DashboardActivity extends AppCompatActivity
@@ -33,6 +34,12 @@ public class DashboardActivity extends AppCompatActivity
         setContentView(R.layout.activity_dashboard);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.RED));
+        //populating title of actionbar i ehile creating the activity
+        if (!new PreferenceSettingValueProvider(getApplicationContext()).provideSharedPreferenceValue()) {
+            actionBar.setTitle("Edu-Nepal");
+        } else {
+            actionBar.setTitle("एजु -नेपाल");
+        }
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -69,7 +76,7 @@ public class DashboardActivity extends AppCompatActivity
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
+        //actionBar.setTitle(mTitle);
     }
 
 
@@ -94,7 +101,7 @@ public class DashboardActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
             return true;
         }
         return super.onOptionsItemSelected(item);

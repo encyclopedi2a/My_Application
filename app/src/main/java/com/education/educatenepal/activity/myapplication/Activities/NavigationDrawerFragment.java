@@ -17,14 +17,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.education.educatenepal.activity.myapplication.R;
 import com.education.educatenepal.activity.myapplication.classes.EntryAdapter;
@@ -81,7 +77,6 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -129,18 +124,18 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
             items.add(new EntryItem("Disclaimer "));
         } else {
             items.add(new EntryItem("मुख्य पृष्ठ"));
-            items.add(new SectionItem("नेपालमा विश्वविध्यालय  "));
-            items.add(new EntryItem("त्रिभुवन विश्वविध्यालय  "));
-            items.add(new EntryItem("पोखरा विश्वविध्यालय  "));
-            items.add(new EntryItem("पुर्बन्चल विश्वविध्यालय  "));
-            items.add(new EntryItem("काठमाडौँ विश्वविध्यालय  "));
-            items.add(new EntryItem("लुम्बिनी बुद्ध विश्वविध्यालय  "));
-            items.add(new EntryItem("महेन्द्र विश्वविध्यालय  "));
-            items.add(new SectionItem("यदु-नेपाल"));
-            items.add(new EntryItem("यो याप शयर गर्नुहोस"));
-            items.add(new EntryItem("फचेबूक्मा लाइक गर्नुहोस"));
-            items.add(new EntryItem("सेत्तिन्ग्स"));
-            items.add(new EntryItem("दिस्क्लैमेर"));
+            items.add(new SectionItem("नेपालमा विश्वविद्यालय"));
+            items.add(new EntryItem("त्रिभुवन विश्वविद्यालय"));
+            items.add(new EntryItem("पोखरा विश्वविद्यालय"));
+            items.add(new EntryItem("पुर्बन्चल विश्वविद्यालय"));
+            items.add(new EntryItem("काठमाडौँ  विश्वविद्यालय"));
+            items.add(new EntryItem("लुम्बिनी बुद्ध विश्वविद्यालय"));
+            items.add(new EntryItem("महेन्द्र विश्वविद्यालय"));
+            items.add(new SectionItem("एजु -नेपाल"));
+            items.add(new EntryItem("यो याप शेयर गर्नुहोस्"));
+            items.add(new EntryItem("फेसबुकमा  लाइक गर्नुहोस्"));
+            items.add(new EntryItem("सेटिङ्ग"));
+            items.add(new EntryItem("डीसक्लेमर"));
         }
         EntryAdapter adapter = new EntryAdapter(getActivity().getApplicationContext(), items, checkbox_preference);
         mDrawerListView.setAdapter(adapter);
@@ -184,26 +179,17 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
                 if (!isAdded()) {
                     return;
                 }
-
                 getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                if (!isAdded()) {
-                    return;
+                if (!new PreferenceSettingValueProvider(getActivity().getApplicationContext()).provideSharedPreferenceValue()) {
+                    getActionBar().setTitle("Edu-Nepal");
+                } else {
+                    getActionBar().setTitle("एजु -नेपाल");
                 }
-
-                if (!mUserLearnedDrawer) {
-                    // The user manually opened the drawer; store this flag to prevent auto-showing
-                    // the navigation drawer automatically in the future.
-                    mUserLearnedDrawer = true;
-                    SharedPreferences sp = PreferenceManager
-                            .getDefaultSharedPreferences(getActivity());
-                    sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
-                }
-
                 getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
         };
@@ -265,31 +251,6 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         super.onConfigurationChanged(newConfig);
         // Forward the new configuration the drawer toggle component.
         mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // If the drawer is open, show the global app actions in the action bar. See also
-        // showGlobalContextActionBar, which controls the top-left area of the action bar.
-        if (mDrawerLayout != null && isDrawerOpen()) {
-            inflater.inflate(R.menu.global, menu);
-            showGlobalContextActionBar();
-        }
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     /**

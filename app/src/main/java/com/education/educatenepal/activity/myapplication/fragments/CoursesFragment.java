@@ -20,6 +20,8 @@ public class CoursesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_courses, container, false);
         spinner=(Spinner)view.findViewById(R.id.spinner);
+        //populate the spinner from custom layout adapter
+        new CustomArrayAdapter(getActivity().getApplicationContext(),spinner).populateSpinner();
         coursesListView=(ListView)view.findViewById(R.id.coursesListView);
         new CustomArrayAdapter(getActivity().getApplicationContext(),coursesListView).populateListView();
         return view;

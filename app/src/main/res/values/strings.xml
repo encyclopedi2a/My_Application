@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
-
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <!--menu item string-->
+    <string name="action_settings"></string>
+    <!--///////////////////////-->
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string-array name="spinner_content">
         <item>Mechi Zone</item>

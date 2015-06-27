@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.education.educatenepal.activity.myapplication.Activities.DashboardActivity;
+import com.education.educatenepal.activity.myapplication.classes.PreferenceSettingValueProvider;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
@@ -16,6 +18,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView textView=(TextView)findViewById(R.id.text);
+        if(!(new PreferenceSettingValueProvider(this)).provideSharedPreferenceValue()){
+            textView.setText("EDU-NEPAL");
+        }else{
+            textView.setText("एजु-नेपाल");
+        }
         imageView = (ImageView) findViewById(R.id.imageView);
         Animation logoMoveAnimation = AnimationUtils.loadAnimation(this, R.anim.logo_animation);
         imageView.startAnimation(logoMoveAnimation);
@@ -38,4 +46,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

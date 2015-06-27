@@ -6,7 +6,6 @@
     tools:context=".MainActivity">
 
 
-
     <com.education.educatenepal.activity.myapplication.classes.SlidingTabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"

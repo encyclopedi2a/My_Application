@@ -68,6 +68,18 @@ public class EntryAdapter extends ArrayAdapter<Item> {
                         .findViewById(R.id.list_item_entry_title);
                 if (position == 0) {
                     title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.home, 0, 0, 0);
+                } else if (position == 2) {
+                    title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow, 0, 0, 0);
+                } else if (position == 3) {
+                    title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow, 0, 0, 0);
+                } else if (position == 4) {
+                    title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow, 0, 0, 0);
+                } else if (position == 5) {
+                    title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow, 0, 0, 0);
+                } else if (position == 6) {
+                    title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow, 0, 0, 0);
+                } else if (position == 7) {
+                    title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.arrow, 0, 0, 0);
                 } else if (position == 9) {
                     title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share, 0, 0, 0);
                 } else if (position == 10) {
