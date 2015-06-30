@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.education.educatenepal.activity.myapplication.R;
 import com.education.educatenepal.activity.myapplication.classes.EntryAdapter;
@@ -29,8 +30,15 @@ import com.education.educatenepal.activity.myapplication.classes.PreferenceSetti
 import com.education.educatenepal.activity.myapplication.classes.SectionItem;
 import com.education.educatenepal.activity.myapplication.fragments.HomePageFragment;
 import com.education.educatenepal.activity.myapplication.fragments.ViewPagerFragment;
-import com.education.educatenepal.activity.myapplication.fragments.WebFragment;
 import com.education.educatenepal.activity.myapplication.interfaces.Item;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import java.util.ArrayList;
 
@@ -70,6 +78,30 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
     private boolean mUserLearnedDrawer;
     private ArrayList<Item> items;
     private boolean checkbox_preference;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
+    private FacebookCallback<LoginResult> facebookCallback = new FacebookCallback<LoginResult>() {
+
+        @Override
+        public void onSuccess(LoginResult loginResult) {
+            AccessToken token = loginResult.getAccessToken();
+            Toast.makeText(getActivity().getApplicationContext(), "hello", Toast.LENGTH_LONG).show();
+            Profile profile = Profile.getCurrentProfile();
+            if (profile != null) {
+
+            }
+        }
+
+        @Override
+        public void onCancel() {
+            Toast.makeText(getActivity().getApplicationContext(), "hello", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onError(FacebookException e) {
+            // Toast.makeText(getActivity().getApplicationContext(),"hello",Toast.LENGTH_LONG).show();
+        }
+    };
 
     public NavigationDrawerFragment() {
     }
@@ -77,6 +109,9 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //initialise the facebook sdk
+        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -86,6 +121,7 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
             mFromSavedInstanceState = true;
         }
+
 
         // Select either the default item (0) or the last selected item.
         selectItem(mCurrentSelectedPosition);
@@ -104,6 +140,13 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_navigation_drawer, null);
+
+        // Other app specific specializatio
+        loginButton = (LoginButton) view.findViewById(R.id.loginButton);
+        loginButton.setReadPermissions("user_friends", "public_profile");
+        // If using in a fragment
+        loginButton.setFragment(this);
+        // Other app specific specialization
         mDrawerListView = (ListView) view.findViewById(R.id.drawerListView);
         mDrawerListView.setBackgroundColor(Color.WHITE);
         mDrawerListView.setOnItemClickListener(this);
@@ -268,10 +311,6 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
         return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        new PreferenceSettingValueProvider(getActivity().getApplicationContext()).provideSharedPreferenceValue();
-    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -286,20 +325,59 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
                 break;
             case 2:
                 DashboardActivity.getCurrentActivityStatua = "passive";
-                ViewPagerFragment activity = new ViewPagerFragment();
-                ft.replace(R.id.container, activity);
+                ViewPagerFragment tuActivity = new ViewPagerFragment();
+                ft.replace(R.id.container, tuActivity);
                 ft.commit();
                 break;
             case 3:
                 DashboardActivity.getCurrentActivityStatua = "passive";
-                WebFragment viewPagerFragment = new WebFragment();
-                ft.replace(R.id.container, viewPagerFragment);
+                ViewPagerFragment puActivity = new ViewPagerFragment();
+                ft.replace(R.id.container, puActivity);
                 ft.commit();
                 break;
+            case 4:
+                DashboardActivity.getCurrentActivityStatua = "passive";
+                ViewPagerFragment purActivity = new ViewPagerFragment();
+                ft.replace(R.id.container, purActivity);
+                ft.commit();
+                break;
+            case 5:
+                DashboardActivity.getCurrentActivityStatua = "passive";
+                ViewPagerFragment kuActivity = new ViewPagerFragment();
+                ft.replace(R.id.container, kuActivity);
+                ft.commit();
+                break;
+            case 6:
+                DashboardActivity.getCurrentActivityStatua = "passive";
+                ViewPagerFragment lbuActivity = new ViewPagerFragment();
+                ft.replace(R.id.container, lbuActivity);
+                ft.commit();
+                break;
+            case 7:
+                DashboardActivity.getCurrentActivityStatua = "passive";
+                ViewPagerFragment muActivity = new ViewPagerFragment();
+                ft.replace(R.id.container, muActivity);
+                ft.commit();
+                break;
+            case 9:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,
+                        "Hey check out my app at: https://play.google.com/store/apps/details?id=com.google.android.apps.plus");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+                break;
+            case 10:
+
+                break;
+
             case 11:
                 Intent intent = new Intent(getActivity(), SettingPreferenceActivity.class);
                 startActivityForResult(intent, 0);
                 getActivity().finish();
+                break;
+            case 12:
+                break;
         }
         mDrawerLayout.closeDrawer(Gravity.LEFT);
     }
@@ -312,5 +390,47 @@ public class NavigationDrawerFragment extends Fragment implements AdapterView.On
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(int position);
+    }
+
+    ////////////////
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, requestCode, data);
+    }
+
+
+    /////////////////
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        LoginButton loginButton = (LoginButton) view.findViewById(R.id.loginButton);
+        loginButton.setReadPermissions("user_friends", "public_profile");
+        loginButton.setFragment(this);
+        loginButton.registerCallback(callbackManager, facebookCallback);
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                AccessToken token = loginResult.getAccessToken();
+                Toast.makeText(getActivity().getApplicationContext(), "hello", Toast.LENGTH_LONG).show();
+                Profile profile = Profile.getCurrentProfile();
+                if (profile != null) {
+
+                }
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+                Toast.makeText(getActivity().getApplicationContext(), "hello", Toast.LENGTH_LONG).show();
+            }
+
+        });
     }
 }

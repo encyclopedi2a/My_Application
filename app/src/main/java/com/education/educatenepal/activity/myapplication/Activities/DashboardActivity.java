@@ -1,6 +1,5 @@
 package com.education.educatenepal.activity.myapplication.Activities;
 
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -33,7 +32,7 @@ public class DashboardActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.RED));
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.holo_red_light)));
         //populating title of actionbar i ehile creating the activity
         if (!new PreferenceSettingValueProvider(getApplicationContext()).provideSharedPreferenceValue()) {
             actionBar.setTitle("Edu-Nepal");

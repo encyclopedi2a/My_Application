@@ -39,4 +39,7 @@ Entry into the public institutions of higher learning, except to the technical p
     <string name="title_activity_view_pager">ViewPagerActivity</string>
     <string name="title_activity_setting_preference">SettingPreferenceActivity</string>
     <string name="nepalifont">hello world</string>
+
+    <!--facebook sdk app id -->
+    <string name="facebookappid">1448466985455718</string>
 </resources>

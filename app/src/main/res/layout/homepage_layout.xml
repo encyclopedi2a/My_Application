@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="5dp"
@@ -21,10 +22,10 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/imageView1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="25dp"
-                    android:background="@drawable/tu" />
+                    android:layout_marginBottom="25dp" />
 
                 <TextView
                     android:id="@+id/university1"
@@ -42,10 +43,10 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/imageView2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="25dp"
-                    android:background="@drawable/tu" />
+                    android:layout_marginBottom="25dp" />
 
                 <TextView
                     android:id="@+id/university2"
@@ -63,10 +64,10 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/imageView3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="25dp"
-                    android:background="@drawable/tu" />
+                    android:layout_marginBottom="25dp" />
 
                 <TextView
                     android:id="@+id/university3"
@@ -84,10 +85,10 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/imageView4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="25dp"
-                    android:background="@drawable/tu" />
+                    android:layout_marginBottom="25dp" />
 
                 <TextView
                     android:id="@+id/university4"
@@ -105,10 +106,10 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/imageView5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="25dp"
-                    android:background="@drawable/tu" />
+                    android:layout_marginBottom="25dp" />
 
                 <TextView
                     android:id="@+id/university5"
@@ -126,10 +127,10 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/imageView6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="25dp"
-                    android:background="@drawable/tu" />
+                    android:layout_marginBottom="25dp" />
 
                 <TextView
                     android:id="@+id/university6"
@@ -163,20 +164,54 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:scrollbars="none">
 
-            <TextView
-                android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ScrollView
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="#ffffff"
-                android:fontFamily="@string/action_example"
-                android:padding="5dp"
-                android:text="@string/dashboard_content"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-        </ScrollView>
+                android:scrollbars="none">
+
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff"
+                    android:fontFamily="@string/action_example"
+                    android:padding="5dp"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    />
+            </ScrollView>
+
+            <ImageView
+                android:id="@+id/internetImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:adjustViewBounds="true"
+                android:maxHeight="200dp"
+                android:maxWidth="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/noconnectionnepali"
+                android:visibility="gone" />
+
+
+            <com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_centerInParent="true"
+                app:mlpb_arrow_height="5dp"
+                app:mlpb_arrow_width="10dp"
+                app:mlpb_enable_circle_background="false"
+                app:mlpb_progress_stoke_width="5dp"
+                app:mlpb_progress_text_visibility="visible"
+                app:mlpb_show_arrow="true" />
+        </RelativeLayout>
+
     </LinearLayout>
 </LinearLayout>
