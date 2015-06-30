@@ -53,5 +53,6 @@ public class ViewPagerFragment extends Fragment {
 
         return view;
     }
+
 }
 

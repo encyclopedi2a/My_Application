@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
     android:orientation="vertical"
     tools:context="com.education.educatenepal.activity.myapplication.fragments.CoursesFragment">
 
@@ -13,16 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_marginBottom="0dp"
-        android:dropDownWidth="fill_parent"
         android:background="@android:drawable/btn_dropdown"
-        android:entries="@array/spinner_content"
-        />
-    <ListView
-        android:id="@+id/collegeListView"
+        android:dropDownWidth="fill_parent"
+        android:entries="@array/spinner_content" />
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        android:dividerHeight="5dp"
-        android:divider="#ffffff"
-        android:scrollbars="none"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        />
 </LinearLayout>

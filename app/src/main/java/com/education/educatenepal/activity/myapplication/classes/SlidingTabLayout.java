@@ -207,9 +207,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
     }
 
     private void scrollToTab(int tabIndex, int positionOffset) {
-        final int tabStripChildCount = mTabStrip.getChildCount();
+       final int tabStripChildCount = mTabStrip.getChildCount();
         if (tabStripChildCount == 0 || tabIndex < 0 || tabIndex >= tabStripChildCount) {
-            return;
+            return ;
         }
 
         View selectedChild = mTabStrip.getChildAt(tabIndex);

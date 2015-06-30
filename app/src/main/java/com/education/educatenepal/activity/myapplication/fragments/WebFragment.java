@@ -10,14 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
 
 import com.education.educatenepal.activity.myapplication.R;
+import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar;
 
 
 public class WebFragment extends Fragment {
     private WebView webView;
-    private ProgressBar progressBar;
+    private CircleProgressBar progressBar;
     private Context context;
     private String url="http://www.technotalkative.com";
     @Override
@@ -27,8 +27,7 @@ public class WebFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_web, container, false);
         context=getActivity().getApplicationContext();
         webView = (WebView) view.findViewById(R.id.webview);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-        progressBar.setIndeterminate(true);
+        progressBar = (CircleProgressBar) view.findViewById(R.id.progressBar);
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setBuiltInZoomControls(true);
         progressBar.setBackgroundColor(Color.WHITE);
