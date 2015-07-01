@@ -19,18 +19,22 @@ public class WebFragment extends Fragment {
     private WebView webView;
     private CircleProgressBar progressBar;
     private Context context;
-    private String url="http://www.technotalkative.com";
+    private String url = "http://tribhuvan-university.edu.np/";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_web, container, false);
-        context=getActivity().getApplicationContext();
+        context = getActivity().getApplicationContext();
         webView = (WebView) view.findViewById(R.id.webview);
         progressBar = (CircleProgressBar) view.findViewById(R.id.progressBar);
-        webView.getSettings().setSupportZoom(true);
-        webView.getSettings().setBuiltInZoomControls(true);
         progressBar.setBackgroundColor(Color.WHITE);
+        webView.getSettings().setSupportZoom(true);
+        webView.setInitialScale(1);
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setBuiltInZoomControls(true);
         webView.setWebViewClient(new MyWebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);

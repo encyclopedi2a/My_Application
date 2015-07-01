@@ -1,9 +1,5 @@
 package com.education.educatenepal.activity.myapplication.fragments;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -25,6 +21,7 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.education.educatenepal.activity.myapplication.R;
 import com.education.educatenepal.activity.myapplication.adapters.CustomArrayAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,7 +30,7 @@ public class CollegeFragment extends Fragment {
     private SwipeMenuCreator swipeMenuCreator;
     private SwipeMenuListView listView;
     private AppAdapter adapter;
-    private List<ApplicationInfo> mAppList;
+    private List<String> mAppList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,41 +41,47 @@ public class CollegeFragment extends Fragment {
         //populating the spinner
         new CustomArrayAdapter(getActivity().getApplicationContext(), spinner).populateSpinner();
         //initialising listView
-        mAppList = getActivity().getPackageManager().getInstalledApplications(0);
+        mAppList = new ArrayList<>();
+        mAppList.add("National College Of Computer Studies");
+        mAppList.add("Kathmandu Institute Of Science And Technology");
+        mAppList.add("College Of Applied Business");
+        mAppList.add("Asian School Of Management");
+        mAppList.add("Orchid College");
+        mAppList.add("Nagarjuna College");
+        mAppList.add("St.Xaviers College");
+        mAppList.add("Prime College");
+        mAppList.add("National College Of Computer Studies");
+        mAppList.add("Kathmandu Institute Of Science And Technology");
         listView = (SwipeMenuListView) view.findViewById(R.id.listView);
         adapter = new AppAdapter();
         listView.setAdapter(adapter);
         swipeMenuCreator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu menu) {
-                SwipeMenuItem openItem = new SwipeMenuItem(
+                SwipeMenuItem webpageItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+                webpageItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
                         0xCE)));
                 // set item width
-                openItem.setWidth(dp2px(100));
+                webpageItem.setWidth(dp2px(50));
                 // set item title
-                openItem.setTitle("Open");
-                // set item title fontsize
-                openItem.setTitleSize(18);
-                // set item title font color
-                openItem.setTitleColor(Color.WHITE);
+                webpageItem.setIcon(R.drawable.webpage);
                 // add to menu
-                menu.addMenuItem(openItem);
+                menu.addMenuItem(webpageItem);
 
                 // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                SwipeMenuItem mapItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
+                mapItem.setBackground(new ColorDrawable(Color.rgb(0xC9,
+                        0xC9, 0xCE)));
                 // set item width
-                deleteItem.setWidth(dp2px(100));
+                mapItem.setWidth(dp2px(50));
                 // set a icon
-                deleteItem.setIcon(R.drawable.map);
+                mapItem.setIcon(R.drawable.map);
                 // add to menu
-                menu.addMenuItem(deleteItem);
+                menu.addMenuItem(mapItem);
             }
         };
         // set creator
@@ -107,28 +110,6 @@ public class CollegeFragment extends Fragment {
         return view;
     }
 
-    private void open(ApplicationInfo item) {
-        // open app
-        Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
-        resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        resolveIntent.setPackage(item.packageName);
-        List<ResolveInfo> resolveInfoList = getActivity().getPackageManager()
-                .queryIntentActivities(resolveIntent, 0);
-        if (resolveInfoList != null && resolveInfoList.size() > 0) {
-            ResolveInfo resolveInfo = resolveInfoList.get(0);
-            String activityPackageName = resolveInfo.activityInfo.packageName;
-            String className = resolveInfo.activityInfo.name;
-
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_LAUNCHER);
-            ComponentName componentName = new ComponentName(
-                    activityPackageName, className);
-
-            intent.setComponent(componentName);
-            startActivity(intent);
-        }
-    }
-
     class AppAdapter extends BaseAdapter {
 
         @Override
@@ -137,7 +118,7 @@ public class CollegeFragment extends Fragment {
         }
 
         @Override
-        public ApplicationInfo getItem(int position) {
+        public Object getItem(int position) {
             return mAppList.get(position);
         }
 
@@ -154,9 +135,8 @@ public class CollegeFragment extends Fragment {
                 new ViewHolder(convertView);
             }
             ViewHolder holder = (ViewHolder) convertView.getTag();
-            ApplicationInfo item = getItem(position);
-            holder.iv_icon.setImageDrawable(item.loadIcon(getActivity().getPackageManager()));
-            holder.tv_name.setText(item.loadLabel(getActivity().getPackageManager()));
+            //holder.iv_icon.setImageDrawable(item.loadIcon(getActivity().getPackageManager()));
+            holder.tv_name.setText(mAppList.get(position));
             return convertView;
         }
 

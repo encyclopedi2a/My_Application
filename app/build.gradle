@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.education.educatenepal.activity.myapplication"
-        minSdkVersion 11
+        minSdkVersion 12
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -30,4 +30,5 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.1.0'
     compile 'com.lsjwzh:materialloadingprogressbar:0.5.5-RELEASE'
     compile 'com.baoyz.swipemenulistview:library:1.1.0'
+    compile 'com.google.android.gms:play-services:7.5.0'
 }

@@ -6,19 +6,24 @@
     tools:context="com.education.educatenepal.activity.myapplication.fragments.CoursesFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <Spinner
-        android:id="@+id/spinner"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginBottom="0dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:dropDownWidth="fill_parent"
-        android:entries="@array/spinner_content" />
+        android:layout_margin="1dp"
+        android:background="#d3d3d3">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:dropDownWidth="fill_parent"
+            android:entries="@array/spinner_content" />
+    </RelativeLayout>
 
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:scrollbars="none" />
 </LinearLayout>
