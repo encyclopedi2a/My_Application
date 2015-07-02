@@ -137,6 +137,7 @@ public class CollegeFragment extends Fragment {
             ViewHolder holder = (ViewHolder) convertView.getTag();
             //holder.iv_icon.setImageDrawable(item.loadIcon(getActivity().getPackageManager()));
             holder.tv_name.setText(mAppList.get(position));
+            holder.tv_name.setBackgroundResource(R.drawable.selector_state);
             return convertView;
         }
 

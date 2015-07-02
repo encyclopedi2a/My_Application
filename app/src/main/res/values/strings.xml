@@ -42,4 +42,6 @@ Entry into the public institutions of higher learning, except to the technical p
 
     <!--facebook sdk app id -->
     <string name="facebookappid">1448466985455718</string>
+    <string name="drawer_open">open drawer</string>
+    <string name="drawer_close">close drawer</string>
 </resources>

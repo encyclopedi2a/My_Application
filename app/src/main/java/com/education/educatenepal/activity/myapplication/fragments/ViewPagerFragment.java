@@ -32,7 +32,7 @@ public class ViewPagerFragment extends Fragment {
         }
         adapter = new TabsPagerAdapter(getFragmentManager(), titles, Numboftabs);
 
-        // Assigning ViewPager View and setting the adapter
+        /* Assigning ViewPager View and setting the adapter */
         pager = (ViewPager) view.findViewById(R.id.pager);
         pager.setAdapter(adapter);
 

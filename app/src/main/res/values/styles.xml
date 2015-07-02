@@ -1,9 +1,25 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- colorPrimary is used for the default action bar background
+-->
+        <item name="colorPrimary">#E62117</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">#2196F3</item>
+        <!-- colorAccent is used as the default value for colorControlActivated
+                     which is used to tint widgets
+        -->
+        <item name="colorAccent">#fff</item>
+        <item name="android:textColorSecondary">#ffffff</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
 
     <style name="initialTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -13,4 +29,6 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+    `
 </resources>
