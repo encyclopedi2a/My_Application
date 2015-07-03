@@ -19,7 +19,6 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.education.educatenepal.activity.myapplication.R;
-import com.education.educatenepal.activity.myapplication.adapters.CustomArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +37,7 @@ public class CoursesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_courses, container, false);
         spinner = (Spinner) view.findViewById(R.id.spinner);
         //populate the spinner from custom layout adapter
-        new CustomArrayAdapter(getActivity().getApplicationContext(), spinner).populateSpinner();
+       // new CustomArrayAdapter(getActivity().getApplicationContext(), spinner,null).populateSpinner();
         //initialising listView
         mAppList = new ArrayList<>();
         mAppList.add("National College Of Computer Studies");

@@ -44,4 +44,5 @@ Entry into the public institutions of higher learning, except to the technical p
     <string name="facebookappid">1448466985455718</string>
     <string name="drawer_open">open drawer</string>
     <string name="drawer_close">close drawer</string>
+    <string name="disclaimer_content">All the content in this app are shown and taken from the webpage.I have tried my best to make the content accurate despite there may content some inaccuracy.Edu-Nepal does not take any liability for any harm or in the occurance of prolem.</string>
 </resources>

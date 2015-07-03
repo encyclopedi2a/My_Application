@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.education.educatenepal.activity.myapplication.R;
+import com.education.educatenepal.activity.myapplication.classes.DisclaimerDialogBox;
 import com.education.educatenepal.activity.myapplication.classes.EntryAdapter;
 import com.education.educatenepal.activity.myapplication.classes.EntryItem;
 import com.education.educatenepal.activity.myapplication.classes.PreferenceSettingValueProvider;
@@ -63,35 +64,22 @@ public class DashboardActivity extends AppCompatActivity {
         // set a custom shadow that overlays the main content when the drawer opens
         // mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
+        //setting up the listview with arrayitem
         items = new ArrayList<Item>();
         if (!new PreferenceSettingValueProvider(getApplicationContext()).provideSharedPreferenceValue()) {
-            items.add(new EntryItem("Home"));
-            items.add(new SectionItem("Universities in Nepal"));
-            items.add(new EntryItem("Tribhuvan University"));
-            items.add(new EntryItem("Pokhara University"));
-            items.add(new EntryItem("Purbanchal University"));
-            items.add(new EntryItem("Kathmandu University"));
-            items.add(new EntryItem("Lumbini Bauddha University"));
-            items.add(new EntryItem("Mahendra University"));
-            items.add(new SectionItem("Edu-Nepal"));
-            items.add(new EntryItem("Share this app"));
-            items.add(new EntryItem("Like us on facebook"));
-            items.add(new EntryItem("Settings"));
-            items.add(new EntryItem("Disclaimer "));
+            String englishListArray[] = getResources().getStringArray(R.array.englishListArray);
+            for (String array : englishListArray)
+                if (array.trim().equals("Universities in Nepal") || array.trim().equals("Edu-Nepal"))
+                    items.add(new SectionItem(array));
+                else
+                    items.add(new EntryItem(array));
         } else {
-            items.add(new EntryItem("मुख्य पृष्ठ"));
-            items.add(new SectionItem("नेपालमा विश्वविद्यालय"));
-            items.add(new EntryItem("त्रिभुवन विश्वविद्यालय"));
-            items.add(new EntryItem("पोखरा विश्वविद्यालय"));
-            items.add(new EntryItem("पुर्बन्चल विश्वविद्यालय"));
-            items.add(new EntryItem("काठमाडौँ  विश्वविद्यालय"));
-            items.add(new EntryItem("लुम्बिनी बुद्ध विश्वविद्यालय"));
-            items.add(new EntryItem("महेन्द्र विश्वविद्यालय"));
-            items.add(new SectionItem("एजु -नेपाल"));
-            items.add(new EntryItem("यो याप शेयर गर्नुहोस्"));
-            items.add(new EntryItem("फेसबुकमा  लाइक गर्नुहोस्"));
-            items.add(new EntryItem("सेटिङ्ग"));
-            items.add(new EntryItem("डीसक्लेमर"));
+            String nepaliListArray[] = getResources().getStringArray(R.array.nepaliListArray);
+            for (String array : nepaliListArray)
+                if (array.trim().equals("मुख्य पृष्ठ") || array.trim().equals("एजु -नेपाल"))
+                    items.add(new SectionItem(array));
+                else
+                    items.add(new EntryItem(array));
         }
         EntryAdapter adapter = new EntryAdapter(getApplicationContext(), items, checkbox_preference);
         mDrawerList.setAdapter(adapter);
@@ -154,6 +142,10 @@ public class DashboardActivity extends AppCompatActivity {
         // Handle action buttons
         switch (item.getItemId()) {
             case R.id.action_settings:
+                Intent intent = new Intent(DashboardActivity.this, SettingPreferenceActivity.class);
+                startActivityForResult(intent, 0);
+                DashboardActivity.this.finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -165,6 +157,8 @@ public class DashboardActivity extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
+            Bundle args = new Bundle();
+            args.putString("position", String.valueOf(position));
             switch (position) {
                 case 0:
                     getCurrentActivityStatua = "active";
@@ -175,36 +169,42 @@ public class DashboardActivity extends AppCompatActivity {
                 case 2:
                     getCurrentActivityStatua = "passive";
                     ViewPagerFragment tuActivity = new ViewPagerFragment();
+                    tuActivity.setArguments(args);
                     ft.replace(R.id.content_frame, tuActivity);
                     ft.commit();
                     break;
                 case 3:
                     getCurrentActivityStatua = "passive";
                     ViewPagerFragment puActivity = new ViewPagerFragment();
+                    puActivity.setArguments(args);
                     ft.replace(R.id.content_frame, puActivity);
                     ft.commit();
                     break;
                 case 4:
                     getCurrentActivityStatua = "passive";
                     ViewPagerFragment purActivity = new ViewPagerFragment();
+                    purActivity.setArguments(args);
                     ft.replace(R.id.content_frame, purActivity);
                     ft.commit();
                     break;
                 case 5:
                     getCurrentActivityStatua = "passive";
                     ViewPagerFragment kuActivity = new ViewPagerFragment();
+                    kuActivity.setArguments(args);
                     ft.replace(R.id.content_frame, kuActivity);
                     ft.commit();
                     break;
                 case 6:
                     getCurrentActivityStatua = "passive";
                     ViewPagerFragment lbuActivity = new ViewPagerFragment();
+                    lbuActivity.setArguments(args);
                     ft.replace(R.id.content_frame, lbuActivity);
                     ft.commit();
                     break;
                 case 7:
                     getCurrentActivityStatua = "passive";
                     ViewPagerFragment muActivity = new ViewPagerFragment();
+                    muActivity.setArguments(args);
                     ft.replace(R.id.content_frame, muActivity);
                     ft.commit();
                     break;
@@ -227,8 +227,10 @@ public class DashboardActivity extends AppCompatActivity {
                     Intent intent = new Intent(DashboardActivity.this, SettingPreferenceActivity.class);
                     startActivityForResult(intent, 0);
                     DashboardActivity.this.finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     break;
                 case 12:
+                    new DisclaimerDialogBox(DashboardActivity.this).showDialog();
                     break;
             }
             mDrawerLayout.closeDrawer(Gravity.LEFT);
@@ -275,6 +277,7 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
 }
+
 
 
 

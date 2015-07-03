@@ -30,12 +30,13 @@ public class ViewPagerFragment extends Fragment {
         }else{
             titles=new CharSequence[]{"कलेजहरु","कोर्सेस","वेबपेज","नक्सा"};
         }
-        adapter = new TabsPagerAdapter(getFragmentManager(), titles, Numboftabs);
+        //this value comes from the activity
+        String listPosition = getArguments().getString("position");
+        adapter = new TabsPagerAdapter(getFragmentManager(), titles, Numboftabs,listPosition);
 
         /* Assigning ViewPager View and setting the adapter */
         pager = (ViewPager) view.findViewById(R.id.pager);
         pager.setAdapter(adapter);
-
         // Assiging the Sliding Tab Layout View
         tabs = (SlidingTabLayout) view.findViewById(R.id.tabs);
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width

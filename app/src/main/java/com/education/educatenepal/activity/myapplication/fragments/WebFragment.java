@@ -16,10 +16,10 @@ import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar;
 
 
 public class WebFragment extends Fragment {
-    private WebView webView;
+    WebView webView;
     private CircleProgressBar progressBar;
     private Context context;
-    private String url = "http://tribhuvan-university.edu.np/";
+    private String url = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,6 +27,22 @@ public class WebFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_web, container, false);
         context = getActivity().getApplicationContext();
+        //This value comes from following process
+        //DashboardActivity->ViewPagerFragment-->WebFragment
+        String listPosition = getArguments().getString("position");
+        if (listPosition.equals("2")) {
+            url = "http://tribhuvan-university.edu.np/";
+        } else if (listPosition.equals("3")) {
+            url = "http://pu.edu.np/university/";
+        } else if (listPosition.equals("4")) {
+            url = "http://purbuniv.edu.np/";
+        } else if (listPosition.equals("5")) {
+            url = "http://www.ku.edu.np/";
+        } else if (listPosition.equals("6")) {
+            url = "http://www.lbu.edu.np/";
+        } else if (listPosition.equals("7")) {
+            url = "http://nsu.edu.np/";
+        }
         webView = (WebView) view.findViewById(R.id.webview);
         progressBar = (CircleProgressBar) view.findViewById(R.id.progressBar);
         progressBar.setBackgroundColor(Color.WHITE);
@@ -64,5 +80,4 @@ public class WebFragment extends Fragment {
             progressBar.setVisibility(View.GONE);
         }
     }
-
 }

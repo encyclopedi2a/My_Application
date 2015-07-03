@@ -12,7 +12,6 @@
         android:id="@+id/titletool"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hello"
         android:textColor="#fff"
         android:textSize="17sp"
         android:textStyle="bold" />

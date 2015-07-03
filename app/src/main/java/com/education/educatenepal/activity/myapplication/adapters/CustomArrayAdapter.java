@@ -10,7 +10,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.education.educatenepal.activity.myapplication.R;
-import com.education.educatenepal.activity.myapplication.classes.PreferenceSettingValueProvider;
 
 /**
  * Created by gokarna on 6/24/15.
@@ -18,10 +17,14 @@ import com.education.educatenepal.activity.myapplication.classes.PreferenceSetti
 public class CustomArrayAdapter {
     private Context context;
     private View View;
-    private String []spinnerData;
-    public CustomArrayAdapter(Context context, View View) {
+    private String[] spinnerData;
+    private String listPosition;
+    private String array[] = null;
+
+    public CustomArrayAdapter(Context context, View View, String listPosition) {
         this.context = context;
         this.View = View;
+        this.listPosition = listPosition;
     }
 
     public void populateListView() {
@@ -39,14 +42,20 @@ public class CustomArrayAdapter {
     }
 
     public void populateSpinner() {
-        if(!(new PreferenceSettingValueProvider(context)).provideSharedPreferenceValue()){
-            spinnerData = new String[]{"Mechi Zone", "Koshi Zone", "Sagarmatha Zone", "Janakpur Zone", "Narayani Zone", "Bagmati Zone", "Gandaki Zone"
-            ,"Dhaulagiri zone","Rapti Zone","Bheri Zone","Karnali Zone","Seti Zone","Mahakali Zone"};
-        }else{
-            spinnerData=new String[]{"मेची अञ्चल","कोशी अञ्चल","सगरमाथा अञ्चल","जनकपुर अञ्चल","नारायणी अञ्चल","बागमती अञ्चल","गण्डकी अञ्चल" , "धौलागिरी अञ्चल" , "लुम्बिनी अञ्चल " ,
-                            "राप्ती अञ्चल " , "भेरी अञ्चल " , "कर्णाली अञ्चल " , "सेति अञ्चल" , "महाकाली अञ्चल "};
+        if (listPosition.equals("2")) {
+            array = context.getResources().getStringArray(R.array.tuSpinnerArray);
+        } else if (listPosition.equals("3")) {
+            array = context.getResources().getStringArray(R.array.puSpinnerArray);
+        } else if (listPosition.equals("4")) {
+            array = context.getResources().getStringArray(R.array.purSpinnerArray);
+        } else if (listPosition.equals("5")) {
+            array = context.getResources().getStringArray(R.array.kuSpinnerArray);
+        } else if (listPosition.equals("6")) {
+            array = context.getResources().getStringArray(R.array.lbuSpinnerArray);
+        } else if (listPosition.equals("7")) {
+            array = context.getResources().getStringArray(R.array.mahendraSpinnerArray);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_item, spinnerData);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_item, array);
         ((Spinner) View).setAdapter(adapter);
     }
 }

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
                 startActivity(intent);
                 finish();
+                //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
 
             @Override

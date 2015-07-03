@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?><!--   -->
+<resources>
+    <string-array name="tuSpinnerArray">
+        <item>Medical Colleges</item>
+        <item>Engineering Colleges</item>
+        <item>BBA Colleges</item>
+        <item>Bsc.Csit Colleges</item>
+        <item>BIM Colleges</item>
+        <item>BBS Colleges</item>
+        <item>BBM Colleges</item>
+    </string-array>
+    <!--   -->
+    <string-array name="puSpinnerArray">
+        <item>School of Engineering</item>
+        <item>School of Health and Alied Sciences</item>
+        <item>School of Business</item>
+        <item>School of Development and Social Engineering</item>
+    </string-array>
+    <!--   -->
+    <string-array name="purSpinnerArray">
+        <item>Science and Technology</item>
+        <item>Management</item>
+        <item>Arts</item>
+        <item>Education</item>
+        <item>Law</item>
+        <item>Medical and Allies Sciences</item>
+    </string-array>
+    <!--   -->
+    <string-array name="kuSpinnerArray">
+        <item>Arts</item>
+        <item>Education</item>
+        <item>Engineering</item>
+        <item>Law</item>
+        <item>Management</item>
+        <item>Medical Science</item>
+        <item>Science</item>
+    </string-array>
+    <!--   -->
+    <string-array name="lbuSpinnerArray">
+        <item>Buddhism</item>
+    </string-array>
+    <!--   -->
+    <string-array name="mahendraSpinnerArray">
+        <item>Sanskrit</item>
+    </string-array>
+    <!--   -->
+    <string-array name="listArray">
+        <item>National College Of Computer Studies</item>
+        <item>Kathmandu Institute Of Science And Technology</item>
+        <item>College Of Applied Business</item>
+        <item>Asian School Of Management</item>
+        <item>Orchid College</item>
+        <item>Nagarjuna College</item>
+        <item>St.Xaviers College</item>
+        <item>Prime College</item>
+        <item>National College Of Computer Studies</item>
+        <item>Kathmandu Institute Of Science And Technology</item>
+    </string-array>
+    <!--   -->
+    <string-array name="englishListArray">
+        <item>Home</item>
+        <item>Universities in Nepal</item>
+        <item>Tribhuvan University</item>
+        <item>Pokhara University</item>
+        <item>Purbanchal University</item>
+        <item>Kathmandu University</item>
+        <item>Lumbini Bauddha University</item>
+        <item>Mahendra University</item>
+        <item>Edu-Nepal</item>
+        <item>Share this app</item>
+        <item>Like us on facebook</item>
+        <item>Settings</item>
+        <item>Disclaimer</item>
+    </string-array>
+    <!--   -->
+    <string-array name="nepaliListArray">
+        <item>मुख्य पृष्ठ</item>
+        <item>नेपालमा विश्वविद्यालय</item>
+        <item>त्रिभुवन विश्वविद्यालय</item>
+        <item>पोखरा विश्वविद्यालय</item>
+        <item>पुर्बन्चल विश्वविद्यालय</item>
+        <item>काठमाडौँ  विश्वविद्यालय</item>
+        <item>लुम्बिनी बुद्ध विश्वविद्यालय</item>
+        <item>महेन्द्र विश्वविद्यालय</item>
+        <item>एजु -नेपाल</item>
+        <item>यो याप शेयर गर्नुहोस</item>
+        <item>फेसबुकमा  लाइक गर्नुहोस</item>
+        <item>सेटिङ्ग</item>
+        <item>डीसक्लेमर</item>
+    </string-array>
+</resources>
