@@ -12,6 +12,7 @@ import android.widget.ViewFlipper;
 
 import com.education.educatenepal.activity.myapplication.R;
 import com.education.educatenepal.activity.myapplication.classes.ConnectionManager;
+import com.education.educatenepal.activity.myapplication.classes.HomepageTextDownloader;
 import com.education.educatenepal.activity.myapplication.classes.PicassoImageLoader;
 import com.education.educatenepal.activity.myapplication.classes.PreferenceSettingValueProvider;
 import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar;
@@ -19,11 +20,12 @@ import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar;
 /**
  * Created by gokarna on 6/21/15.
  */
-public class HomePageFragment extends Fragment {
+public class HomePageFragment extends Fragment implements View.OnClickListener {
     private ViewFlipper viewFlipper;
     private float initialX;
     private ImageView internetImage;
     private CircleProgressBar circleProgressBar;
+    private TextView content;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +45,9 @@ public class HomePageFragment extends Fragment {
         ImageView imageView4 = (ImageView) view.findViewById(R.id.imageView4);
         ImageView imageView5 = (ImageView) view.findViewById(R.id.imageView5);
         ImageView imageView6 = (ImageView) view.findViewById(R.id.imageView6);
+
+        //  this textview holds the information from server
+        content = (TextView) view.findViewById(R.id.content);
         //loading image at initial start of the fragament in homepage
         new PicassoImageLoader(getActivity().getApplicationContext()).homePageImageLoader(imageView1, imageView2, imageView3, imageView4, imageView5, imageView6);
         //////////////////////////////
@@ -89,14 +94,14 @@ public class HomePageFragment extends Fragment {
         });
         //this image will be activated if the device is not connected to internet
         internetImage = (ImageView) view.findViewById(R.id.internetImage);
+        internetImage.setOnClickListener(this);
         if (!(new PreferenceSettingValueProvider(getActivity().getApplicationContext()).provideSharedPreferenceValue())) {
             internetImage.setImageResource(R.drawable.noconnectionenglish);
         }
         /////////////////////////////////////////////////////////////////
         circleProgressBar = (CircleProgressBar) view.findViewById(R.id.progressBar);
         if (new ConnectionManager(getActivity().getApplicationContext()).isConnectionToInternet()) {
-            circleProgressBar.setColorSchemeResources(android.R.color.holo_red_light);
-            circleProgressBar.setShowProgressText(false);
+            new HomepageTextDownloader(content, circleProgressBar).execute();
         } else {
             internetImage.setVisibility(View.VISIBLE);
             circleProgressBar.setVisibility(View.GONE);
@@ -153,4 +158,11 @@ public class HomePageFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        if (new ConnectionManager(getActivity().getApplicationContext()).isConnectionToInternet()) {
+            new HomepageTextDownloader(content, circleProgressBar).execute();
+            internetImage.setVisibility(View.GONE);
+        }
+    }
 }

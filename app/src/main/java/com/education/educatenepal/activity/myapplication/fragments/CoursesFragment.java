@@ -40,16 +40,11 @@ public class CoursesFragment extends Fragment {
        // new CustomArrayAdapter(getActivity().getApplicationContext(), spinner,null).populateSpinner();
         //initialising listView
         mAppList = new ArrayList<>();
-        mAppList.add("National College Of Computer Studies");
-        mAppList.add("Kathmandu Institute Of Science And Technology");
-        mAppList.add("College Of Applied Business");
-        mAppList.add("Asian School Of Management");
-        mAppList.add("Orchid College");
-        mAppList.add("Nagarjuna College");
-        mAppList.add("St.Xaviers College");
-        mAppList.add("Prime College");
-        mAppList.add("National College Of Computer Studies");
-        mAppList.add("Kathmandu Institute Of Science And Technology");
+        String[] arrays = getResources().getStringArray(R.array.listArray);
+        //Adding item to the arraylist temporarily
+        for (String array : arrays)
+            mAppList.add(array);
+        //
         listView = (SwipeMenuListView) view.findViewById(R.id.listView);
         adapter = new AppAdapter();
         listView.setAdapter(adapter);

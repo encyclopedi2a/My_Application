@@ -55,6 +55,11 @@ public class DashboardActivity extends AppCompatActivity {
         toolbartitle = (TextView) findViewById(R.id.titletool);
         setSupportActionBar(toolbar);
         this.getSupportActionBar().setTitle(null);
+        if (!new PreferenceSettingValueProvider(this).provideSharedPreferenceValue()) {
+            toolbartitle.setText("EDU-NEPAL");
+        } else {
+            toolbartitle.setText("मुख्य पृष्ठ");
+        }
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         getCurrentActivityStatua = "active";
@@ -76,7 +81,7 @@ public class DashboardActivity extends AppCompatActivity {
         } else {
             String nepaliListArray[] = getResources().getStringArray(R.array.nepaliListArray);
             for (String array : nepaliListArray)
-                if (array.trim().equals("मुख्य पृष्ठ") || array.trim().equals("एजु -नेपाल"))
+                if (array.trim().equals("नेपालमा विश्वविद्यालय") || array.trim().equals("एजु - नेपाल"))
                     items.add(new SectionItem(array));
                 else
                     items.add(new EntryItem(array));
@@ -155,6 +160,8 @@ public class DashboardActivity extends AppCompatActivity {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            TextView textView = (TextView) view.findViewById(R.id.list_item_entry_title);
+            toolbartitle.setText(textView.getText());
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             Bundle args = new Bundle();
@@ -246,7 +253,6 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        toolbartitle.setText(mTitle);
     }
 
     @Override
