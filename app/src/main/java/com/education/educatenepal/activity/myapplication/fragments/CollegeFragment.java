@@ -9,20 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.education.educatenepal.activity.myapplication.R;
+import com.education.educatenepal.activity.myapplication.adapters.AppAdapter;
 import com.education.educatenepal.activity.myapplication.adapters.CustomArrayAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.education.educatenepal.activity.myapplication.json.CollegeNameJson;
 
 
 public class CollegeFragment extends Fragment {
@@ -30,7 +26,6 @@ public class CollegeFragment extends Fragment {
     private SwipeMenuCreator swipeMenuCreator;
     private SwipeMenuListView listView;
     private AppAdapter adapter;
-    private List<String> mAppList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,15 +37,9 @@ public class CollegeFragment extends Fragment {
         //populating the spinner
         new CustomArrayAdapter(getActivity().getApplicationContext(), spinner, listPosition).populateSpinner();
         //initialising listView
-        mAppList = new ArrayList<>();
         String[] arrays = getResources().getStringArray(R.array.listArray);
-        //Adding item to the arraylist temporarily
-        for (String array : arrays)
-            mAppList.add(array);
-        //
         listView = (SwipeMenuListView) view.findViewById(R.id.listView);
-        adapter = new AppAdapter();
-        listView.setAdapter(adapter);
+        new CollegeNameJson(getActivity().getApplicationContext(),listView).makeJsonArrayRequest();
         swipeMenuCreator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu menu) {
@@ -105,50 +94,6 @@ public class CollegeFragment extends Fragment {
         });
         return view;
     }
-
-    class AppAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return mAppList.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return mAppList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = View.inflate(getActivity().getApplicationContext(),
-                        R.layout.item_list_app, null);
-                new ViewHolder(convertView);
-            }
-            ViewHolder holder = (ViewHolder) convertView.getTag();
-            //holder.iv_icon.setImageDrawable(item.loadIcon(getActivity().getPackageManager()));
-            holder.tv_name.setText(mAppList.get(position));
-            holder.tv_name.setBackgroundResource(R.drawable.selector_state);
-            return convertView;
-        }
-
-        class ViewHolder {
-            ImageView iv_icon;
-            TextView tv_name;
-
-            public ViewHolder(View view) {
-                iv_icon = (ImageView) view.findViewById(R.id.iv_icon);
-                tv_name = (TextView) view.findViewById(R.id.tv_name);
-                view.setTag(this);
-            }
-        }
-    }
-
     private int dp2px(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
                 getResources().getDisplayMetrics());
