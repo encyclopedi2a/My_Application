@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,9 +22,41 @@
             android:entries="@array/spinner_content" />
     </RelativeLayout>
 
-    <com.baoyz.swipemenulistview.SwipeMenuListView
-        android:id="@+id/listView"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none" />
+        android:background="#ffffff"
+        >
+
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none" />
+
+        <com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_centerInParent="true"
+            app:mlpb_arrow_height="5dp"
+            app:mlpb_arrow_width="10dp"
+            app:mlpb_enable_circle_background="false"
+            app:mlpb_progress_stoke_width="5dp"
+            app:mlpb_progress_text_visibility="visible"
+            app:mlpb_show_arrow="true" />
+        <ImageView
+            android:id="@+id/internetImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="200dp"
+            android:maxWidth="200dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/noconnectionnepali"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
 </LinearLayout>

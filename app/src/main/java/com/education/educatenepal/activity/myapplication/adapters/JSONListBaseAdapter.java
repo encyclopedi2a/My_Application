@@ -15,10 +15,10 @@ import java.util.List;
 /**
  * Created by gokarna on 7/5/15.
  */
-public class AppAdapter extends BaseAdapter {
+public class JSONListBaseAdapter extends BaseAdapter {
     private List<JsonListRow> mAppList;
     private Context context;
-    public  AppAdapter(List<JsonListRow> mAppList,Context context){
+    public JSONListBaseAdapter(List<JsonListRow> mAppList, Context context){
         this.mAppList=mAppList;
         this.context=context;
     }
