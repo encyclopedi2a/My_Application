@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.education.educatenepal.activity.myapplication.Beans.JsonListRow;
 import com.education.educatenepal.activity.myapplication.adapters.JSONListBaseAdapter;
@@ -23,20 +24,21 @@ import java.util.List;
 /**
  * Created by gokarna on 7/5/15.
  */
-public class CollegeNameJson {
+public class CollegeNameJson implements SwipeMenuListView.OnMenuItemClickListener{
     private Context context;
     private SwipeMenuListView listView;
-    private String arrayUrl = "http://thesunbihosting.com/demo/beauty/json/opening_days";
+    private String arrayUrl = "http://gokarna.byethost31.com/connect.php";
     private List<JsonListRow> listItems = new ArrayList<>();
     private CircleProgressBar circleProgressBar;
-
-    public CollegeNameJson(Context context, SwipeMenuListView listView, CircleProgressBar circleProgressBar) {
+    public CollegeNameJson(final Context context, SwipeMenuListView listView, CircleProgressBar circleProgressBar) {
         this.context = context;
         this.listView = listView;
         this.circleProgressBar = circleProgressBar;
+        listView.setOnMenuItemClickListener(this);
+
     }
 
-    public void makeJsonArrayRequest() {
+    public void makeJsonArrayRequest(final String collegeTypeIdentifier) {
         JsonArrayRequest arrayRequest = new JsonArrayRequest(arrayUrl, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -46,9 +48,13 @@ public class CollegeNameJson {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject person = (JSONObject) response
                                 .getJSONObject(i);
-                        String collegeName = person.getString("day");
-                        JsonListRow item = new JsonListRow(collegeName);
-                        listItems.add(item);
+
+                        String collegeType = person.getString("colz_type");
+                        if (collegeType.equals(collegeTypeIdentifier)) {
+                            String collegeName = person.getString("colz_name");
+                            JsonListRow item = new JsonListRow(collegeName);
+                            listItems.add(item);
+                        }
                     }
                     JSONListBaseAdapter adapter = new JSONListBaseAdapter(listItems, context);
                     listView.setAdapter(adapter);
@@ -66,11 +72,22 @@ public class CollegeNameJson {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
             }
         });
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(arrayRequest);
     }
 
+    @Override
+    public boolean onMenuItemClick(int position, SwipeMenu swipeMenu, int index) {
+        switch (index) {
+            case 0:
+                Toast.makeText(context, "hello clickes", Toast.LENGTH_LONG).show();
+                break;
+            case 1:
+                Toast.makeText(context, "hello clickes", Toast.LENGTH_LONG).show();
+                break;
+        }
+        return false;
+    }
 }

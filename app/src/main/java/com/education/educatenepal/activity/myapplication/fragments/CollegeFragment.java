@@ -25,40 +25,41 @@ import com.education.educatenepal.activity.myapplication.json.CollegeNameJson;
 import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar;
 
 
-public class CollegeFragment extends Fragment implements View.OnClickListener {
+public class CollegeFragment extends Fragment implements View.OnClickListener,AdapterView.OnItemSelectedListener {
     private Spinner spinner;
     private SwipeMenuCreator swipeMenuCreator;
     private SwipeMenuListView listView;
     private JSONListBaseAdapter adapter;
     private ImageView internetImage;
     private CircleProgressBar progressBar;
+    private String listPosition;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        listPosition = getArguments().getString("position");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_college, container, false);
-        String listPosition = getArguments().getString("position");
         spinner = (Spinner) view.findViewById(R.id.spinner);
-        progressBar=(CircleProgressBar)view.findViewById(R.id.progressBar);
+        spinner.setOnItemSelectedListener(this);
+        progressBar = (CircleProgressBar) view.findViewById(R.id.progressBar);
+        internetImage = (ImageView) view.findViewById(R.id.internetImage);
+        listView = (SwipeMenuListView) view.findViewById(R.id.listView);
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        //populating the spinner
         progressBar.setColorSchemeResources(android.R.color.holo_red_light);
         progressBar.setShowProgressText(false);
-        internetImage=(ImageView)view.findViewById(R.id.internetImage);
         internetImage.setOnClickListener(this);
-        //populating the spinner
-        new CustomArrayAdapter(getActivity().getApplicationContext(), spinner, listPosition).populateSpinner();
-        //initialising listView
-        if (!(new PreferenceSettingValueProvider(getActivity().getApplicationContext()).provideSharedPreferenceValue())) {
-            internetImage.setImageResource(R.drawable.noconnectionenglish);
-        }
-        listView = (SwipeMenuListView) view.findViewById(R.id.listView);
-        new CollegeNameJson(getActivity().getApplicationContext(),listView,progressBar).makeJsonArrayRequest();
-        if (new ConnectionManager(getActivity().getApplicationContext()).isConnectionToInternet()) {
-            new CollegeNameJson(getActivity().getApplicationContext(),listView,progressBar).makeJsonArrayRequest();
-        } else {
-            internetImage.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
-        }
         swipeMenuCreator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu menu) {
@@ -90,29 +91,20 @@ public class CollegeFragment extends Fragment implements View.OnClickListener {
         };
         // set creator
         listView.setMenuCreator(swipeMenuCreator);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
-        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                switch (index) {
-                    case 0:
-                        // open
-                        break;
-                    case 1:
-                        // delete
-                        break;
-                }
-                // false : close the menu; true : not close the menu
-                return false;
-            }
-        });
-        return view;
+        new CustomArrayAdapter(getActivity().getApplicationContext(), spinner, listPosition).populateSpinner();
+        //initialising listView
+        if (!(new PreferenceSettingValueProvider(getActivity().getApplicationContext()).provideSharedPreferenceValue())) {
+            internetImage.setImageResource(R.drawable.noconnectionenglish);
+        }
+        new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
+        if (new ConnectionManager(getActivity().getApplicationContext()).isConnectionToInternet()) {
+            new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
+        } else {
+            internetImage.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+        }
     }
+
     private int dp2px(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
                 getResources().getDisplayMetrics());
@@ -121,9 +113,40 @@ public class CollegeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (new ConnectionManager(getActivity().getApplicationContext()).isConnectionToInternet()) {
-            new CollegeNameJson(getActivity().getApplicationContext(),listView,progressBar).makeJsonArrayRequest();
+            new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
             progressBar.setVisibility(View.VISIBLE);
             internetImage.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            switch (position) {
+                case 0:
+                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
+                    break;
+                case 1:
+                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("engineering");
+                    break;
+                case 2:
+                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bba");
+                    break;
+                case 3:
+                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bsccsit");
+                    break;
+                case 4:
+                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bim");
+                    break;
+                case 5:
+                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bbs");
+                    break;
+                case 6:
+                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bbm");
+                    break;
+            }
+        }
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

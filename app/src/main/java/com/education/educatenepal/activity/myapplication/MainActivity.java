@@ -1,6 +1,7 @@
 package com.education.educatenepal.activity.myapplication;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
@@ -14,6 +15,7 @@ import com.education.educatenepal.activity.myapplication.classes.PreferenceSetti
 public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
 
+    private Animation logoMoveAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,11 @@ public class MainActivity extends AppCompatActivity {
             textView.setText("एजु-नेपाल");
         }
         imageView = (ImageView) findViewById(R.id.imageView);
-        Animation logoMoveAnimation = AnimationUtils.loadAnimation(this, R.anim.logo_animation);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            logoMoveAnimation = AnimationUtils.loadAnimation(this, R.anim.portrait_logo_animation);
+        } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            logoMoveAnimation = AnimationUtils.loadAnimation(this, R.anim.landscape_logo_animation);
+        }
         imageView.startAnimation(logoMoveAnimation);
         logoMoveAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
