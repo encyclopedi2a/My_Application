@@ -21,11 +21,12 @@ import com.education.educatenepal.activity.myapplication.adapters.CustomArrayAda
 import com.education.educatenepal.activity.myapplication.adapters.JSONListBaseAdapter;
 import com.education.educatenepal.activity.myapplication.classes.ConnectionManager;
 import com.education.educatenepal.activity.myapplication.classes.PreferenceSettingValueProvider;
-import com.education.educatenepal.activity.myapplication.json.CollegeNameJson;
+import com.education.educatenepal.activity.myapplication.json.PUCollegeNameJson;
+import com.education.educatenepal.activity.myapplication.json.TUCollegeNameJson;
 import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar;
 
 
-public class CollegeFragment extends Fragment implements View.OnClickListener,AdapterView.OnItemSelectedListener {
+public class CollegeFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private Spinner spinner;
     private SwipeMenuCreator swipeMenuCreator;
     private SwipeMenuListView listView;
@@ -96,9 +97,9 @@ public class CollegeFragment extends Fragment implements View.OnClickListener,Ad
         if (!(new PreferenceSettingValueProvider(getActivity().getApplicationContext()).provideSharedPreferenceValue())) {
             internetImage.setImageResource(R.drawable.noconnectionenglish);
         }
-        new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
+        new TUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
         if (new ConnectionManager(getActivity().getApplicationContext()).isConnectionToInternet()) {
-            new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
+            new TUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
         } else {
             internetImage.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
@@ -113,7 +114,7 @@ public class CollegeFragment extends Fragment implements View.OnClickListener,Ad
     @Override
     public void onClick(View v) {
         if (new ConnectionManager(getActivity().getApplicationContext()).isConnectionToInternet()) {
-            new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
+            new TUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
             progressBar.setVisibility(View.VISIBLE);
             internetImage.setVisibility(View.GONE);
         }
@@ -121,30 +122,45 @@ public class CollegeFragment extends Fragment implements View.OnClickListener,Ad
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            switch (position) {
-                case 0:
-                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
-                    break;
-                case 1:
-                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("engineering");
-                    break;
-                case 2:
-                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bba");
-                    break;
-                case 3:
-                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bsccsit");
-                    break;
-                case 4:
-                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bim");
-                    break;
-                case 5:
-                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bbs");
-                    break;
-                case 6:
-                    new CollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bbm");
-                    break;
-            }
+        switch (Integer.parseInt(listPosition)) {
+            case 2:
+                switch (position) {
+                    case 0:
+                        new TUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("medical");
+                        break;
+                    case 1:
+                        new TUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("engineering");
+                        break;
+                    case 2:
+                        new TUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bba");
+                        break;
+                    case 3:
+                        new TUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bsccsit");
+                        break;
+                    case 4:
+                        new TUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bim");
+                        break;
+                    case 5:
+                        new TUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bbs");
+                        break;
+                    case 6:
+                        new TUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bbm");
+                        break;
+                }
+                break;
+            case 3:
+                switch (position) {
+                    case 0:
+                        new PUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bba");
+                        break;
+                    case 1:
+                        new PUCollegeNameJson(getActivity().getApplicationContext(), listView, progressBar).makeJsonArrayRequest("bba-bi");
+                        break;
+                }
+                break;
         }
+    }
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 

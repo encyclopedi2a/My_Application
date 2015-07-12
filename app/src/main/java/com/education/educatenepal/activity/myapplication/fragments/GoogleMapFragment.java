@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.education.educatenepal.activity.myapplication.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -15,18 +16,22 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class GoogleMapFragment extends Fragment {
+public class GoogleMapFragment extends Fragment implements View.OnClickListener {
     private GoogleMap googleMap;
     private MapView mapView;
     private LatLng LAT_LNG = null;
     private String title = null;
     private Marker Lat_Lng;
-
+    private Button normalButton,satelliteButton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_googlemap, container, false);
+        normalButton=(Button)view.findViewById(R.id.normal);
+        normalButton.setOnClickListener(this);
+        satelliteButton=(Button)view.findViewById(R.id.satellite);
+        satelliteButton.setOnClickListener(this);
         //This value comes from following process
         //DashboardActivity->ViewPagerFragment-->GoogleMapFragment
         String listPosition = getArguments().getString("position");
@@ -47,7 +52,6 @@ public class GoogleMapFragment extends Fragment {
         mapView = (MapView) view.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
         googleMap = mapView.getMap();
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         if (googleMap != null) {
             Lat_Lng = googleMap.addMarker(new MarkerOptions().position(LAT_LNG));
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LAT_LNG, 1000));
@@ -76,4 +80,13 @@ public class GoogleMapFragment extends Fragment {
         mapView.onLowMemory();
     }
 
+    @Override
+    public void onClick(View view) {
+        if(view==(Button)normalButton){
+            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        }
+        else if(view==(Button)satelliteButton){
+            googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        }
+    }
 }

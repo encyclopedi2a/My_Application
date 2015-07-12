@@ -11,10 +11,8 @@
     </string-array>
     <!--   -->
     <string-array name="puSpinnerArray">
-        <item>School of Engineering</item>
-        <item>School of Health and Alied Sciences</item>
-        <item>School of Business</item>
-        <item>School of Development and Social Engineering</item>
+        <item>BBA</item>
+        <item>BBA-BI</item>
     </string-array>
     <!--   -->
     <string-array name="purSpinnerArray">

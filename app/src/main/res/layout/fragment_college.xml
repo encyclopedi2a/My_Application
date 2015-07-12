@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#d3d3d3"
     android:orientation="vertical"
     tools:context="com.education.educatenepal.activity.myapplication.fragments.CoursesFragment">
 
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
-        android:background="#d3d3d3">
+        android:background="@android:color/darker_gray">
 
         <Spinner
             android:id="@+id/spinner"
@@ -25,13 +26,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
         >
 
         <com.baoyz.swipemenulistview.SwipeMenuListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:dividerHeight="7dp"
+            android:layout_margin="7dp"
+            android:background="#ffffff"
             android:scrollbars="none" />
 
         <com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar

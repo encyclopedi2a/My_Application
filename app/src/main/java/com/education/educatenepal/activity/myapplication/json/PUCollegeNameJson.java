@@ -24,13 +24,13 @@ import java.util.List;
 /**
  * Created by gokarna on 7/5/15.
  */
-public class CollegeNameJson implements SwipeMenuListView.OnMenuItemClickListener{
+public class PUCollegeNameJson implements SwipeMenuListView.OnMenuItemClickListener{
     private Context context;
     private SwipeMenuListView listView;
-    private String arrayUrl = "http://gokarna.byethost31.com/connect.php";
+    private String arrayUrl = "http://gokarna.byethost31.com/puconnect.php";
     private List<JsonListRow> listItems = new ArrayList<>();
     private CircleProgressBar circleProgressBar;
-    public CollegeNameJson(final Context context, SwipeMenuListView listView, CircleProgressBar circleProgressBar) {
+    public PUCollegeNameJson(final Context context, SwipeMenuListView listView, CircleProgressBar circleProgressBar) {
         this.context = context;
         this.listView = listView;
         this.circleProgressBar = circleProgressBar;
@@ -39,6 +39,7 @@ public class CollegeNameJson implements SwipeMenuListView.OnMenuItemClickListene
     }
 
     public void makeJsonArrayRequest(final String collegeTypeIdentifier) {
+        circleProgressBar.setVisibility(View.VISIBLE);
         JsonArrayRequest arrayRequest = new JsonArrayRequest(arrayUrl, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -48,7 +49,6 @@ public class CollegeNameJson implements SwipeMenuListView.OnMenuItemClickListene
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject person = (JSONObject) response
                                 .getJSONObject(i);
-
                         String collegeType = person.getString("colz_type");
                         if (collegeType.equals(collegeTypeIdentifier)) {
                             String collegeName = person.getString("colz_name");
@@ -80,14 +80,6 @@ public class CollegeNameJson implements SwipeMenuListView.OnMenuItemClickListene
 
     @Override
     public boolean onMenuItemClick(int position, SwipeMenu swipeMenu, int index) {
-        switch (index) {
-            case 0:
-                Toast.makeText(context, "hello clickes", Toast.LENGTH_LONG).show();
-                break;
-            case 1:
-                Toast.makeText(context, "hello clickes", Toast.LENGTH_LONG).show();
-                break;
-        }
         return false;
     }
 }
